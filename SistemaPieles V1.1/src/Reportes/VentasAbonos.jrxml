@@ -8,7 +8,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\Users\\SONY\\Documents\\NetBeansProjects\\Proyecto Pieles\\ProyectoPieles\\SistemaPieles\\src\\Reportes\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["C:\\Proyecto Pieles\\ProyectoPieles1.1\\SistemaPieles V1.1\\src\\Reportes\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -98,7 +98,7 @@ WHERE
 	<pageHeader>
 		<band height="101" splitType="Stretch">
 			<subreport>
-				<reportElement x="2" y="1" width="200" height="100" uuid="0b721c66-2095-4e20-837c-bfa8221d9a69"/>
+				<reportElement x="0" y="1" width="200" height="100" uuid="69426a21-b99b-4d02-8ab8-48bf8e374102"/>
 				<subreportParameter name="idcliente">
 					<subreportParameterExpression><![CDATA[$P{idcliente}]]></subreportParameterExpression>
 				</subreportParameter>

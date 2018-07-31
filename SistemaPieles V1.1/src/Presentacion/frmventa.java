@@ -184,8 +184,6 @@ public class frmventa extends javax.swing.JInternalFrame {
         btnguardarproducto.setEnabled(true);
         btnbuscarproducto.setEnabled(true);
 
-        txtnombreproducto.setText("");
-        txtprecioventa.setText("");
         txtmedida.setText("");
         txtsubtotal.setText("");
     }
@@ -296,6 +294,7 @@ public class frmventa extends javax.swing.JInternalFrame {
         lblinstruccion = new javax.swing.JLabel();
         chkmodificar = new javax.swing.JCheckBox();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablalistado = new javax.swing.JTable();
@@ -451,6 +450,13 @@ public class frmventa extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton3.setText("Generar Recibo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -500,7 +506,10 @@ public class frmventa extends javax.swing.JInternalFrame {
                             .addComponent(lblinstruccion)
                             .addComponent(chkmodificar)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -549,7 +558,9 @@ public class frmventa extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -684,9 +695,6 @@ public class frmventa extends javax.swing.JInternalFrame {
         });
 
         txtmedida.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtmedidaKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtmedidaKeyReleased(evt);
             }
@@ -988,11 +996,6 @@ public class frmventa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtmedidaKeyReleased
 
 
-    private void txtmedidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmedidaKeyPressed
-
-
-    }//GEN-LAST:event_txtmedidaKeyPressed
-
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
         // TODO add your handling code here:
         accion = "editar";
@@ -1083,6 +1086,27 @@ public class frmventa extends javax.swing.JInternalFrame {
             }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Map p = new HashMap();
+        p.put("idventa", txtidventa.getText());
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/recibo.jrxml");
+                print = JasperFillManager.fillReport(report, p, connection);
+
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("RECIBO");
+                view.setVisible(true);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1105,6 +1129,7 @@ public class frmventa extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser dcfechaventa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

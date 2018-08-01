@@ -153,7 +153,7 @@ public class frminicio extends javax.swing.JFrame {
         mnuventas.setText("Ventas");
         mnuventas.setPreferredSize(new java.awt.Dimension(119, 32));
 
-        jMenuItem5.setText("Detalle Venta");
+        jMenuItem5.setText("Generar venta");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);

@@ -570,6 +570,9 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         lbltotalventainventa.setForeground(new java.awt.Color(236, 240, 241));
         lbltotalventainventa.setText("jLabel10");
 
+        jButton1.setBackground(new java.awt.Color(52, 73, 94));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/devices1_78351.png"))); // NOI18N
         jButton1.setText("Estado de cuenta");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -577,6 +580,9 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(52, 73, 94));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/devices_78336.png"))); // NOI18N
         jButton2.setText("Detalle de ventas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -810,6 +816,11 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
     private void btnfiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfiltrarActionPerformed
         // TODO add your handling code here:
+        if (txtidcliente.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un cliente por favor.");
+            return;
+        }
+        
         idcliente = txtidcliente.getText();
         //int seleccionado = cbocliente.getSelectedIndex();
         //mostrar(cbocliente.getItemAt(seleccionado));
@@ -819,6 +830,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if (txtidcliente.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un cliente por favor.");
+            return;
+        }
         Map p = new HashMap();
         p.put("idcliente", txtidcliente.getText());
             JasperReport report;
@@ -840,6 +855,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if (txtidcliente.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un cliente por favor.");
+            return;
+        }
         Map p = new HashMap();
         p.put("idcliente", txtidcliente.getText());
             JasperReport report;

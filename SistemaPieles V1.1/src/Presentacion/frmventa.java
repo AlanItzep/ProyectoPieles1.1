@@ -443,6 +443,9 @@ public class frmventa extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(52, 73, 94));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/loupe_78347.png"))); // NOI18N
         jButton2.setText("Utilidades por venta");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -450,6 +453,9 @@ public class frmventa extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(52, 73, 94));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/printer_78349.png"))); // NOI18N
         jButton3.setText("Generar Recibo");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -825,13 +831,13 @@ public class frmventa extends javax.swing.JInternalFrame {
         //validadion de ingreso de datos
 
         if (txtnombrecliente.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes seleccionar un cliente");
+            JOptionPane.showMessageDialog(rootPane, "Debes seleccionar un cliente");
             btnbuscarproducto.requestFocus();
             return;
         }
 
         if ((dcfechaventa.getDate().toString()).length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar una medida");
+            JOptionPane.showMessageDialog(rootPane, "Debes Ingresar una medida");
             dcfechaventa.requestFocus();
             return;
         }
@@ -1067,6 +1073,10 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if (txtidventa.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione una venta en la tabla por favor.");
+            return;
+        }
         Map p = new HashMap();
         p.put("idventa", txtidventa.getText());
             JasperReport report;
@@ -1088,6 +1098,10 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        if (txtidventa.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione una venta en la tabla por favor.");
+            return;
+        }
         Map p = new HashMap();
         p.put("idventa", txtidventa.getText());
             JasperReport report;

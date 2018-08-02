@@ -891,7 +891,7 @@ public class frmventa extends javax.swing.JInternalFrame {
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         // TODO add your handling code here:
         if (!txtiddetalleventa.getText().equals("")) {
-            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de elimiar la habitacion?", "Confirmar", 2);
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de elimiar este producto?", "Confirmar", 2);
             if (confirmacion == 0) {
                 fdetalleventa func = new fdetalleventa();
                 vdetalleventa dts = new vdetalleventa();
@@ -899,7 +899,11 @@ public class frmventa extends javax.swing.JInternalFrame {
                 dts.setIddetalleventa(Integer.parseInt(txtiddetalleventa.getText()));
                 func.eliminar(dts);
                 mostrar(idventa);
-                inhabilitar();
+                txtnombreproducto.setText("");
+                txtprecioventa.setText("");
+                txtmedida.setText("");
+                btnbuscarproducto.setEnabled(false);
+                txtmedida.setEnabled(false);
             }
         }
     }//GEN-LAST:event_btneliminarActionPerformed

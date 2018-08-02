@@ -7,6 +7,7 @@ package Presentacion;
 
 import Datos.vdetalleventa;
 import Datos.vventa;
+import Logica.Iconos;
 import Logica.conexion;
 import Logica.fdetalleventa;
 import Logica.fventa;
@@ -45,6 +46,7 @@ public class frmventa extends javax.swing.JInternalFrame {
     public static int idusuario;
     public static String idventa = "";
     private Connection connection = new conexion().conectar();
+    Iconos icon = new Iconos();
 
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -88,6 +90,9 @@ public class frmventa extends javax.swing.JInternalFrame {
         tablaclientes.getColumnModel().getColumn(8).setPreferredWidth(0);
     }
 
+    
+    
+    
     void inhabilitar() {
         txtidventa.setVisible(false);
         txtidcliente.setVisible(false);
@@ -1034,8 +1039,33 @@ public class frmventa extends javax.swing.JInternalFrame {
             dts.setIdventa(Integer.parseInt(txtidventa.getText()));
             
             if (func.editar(dts)) {
-                JOptionPane.showMessageDialog(rootPane, "El detalle del cliente " + txtnombrecliente.getText()
-                        + " fue modificado satisfactoriamente");
+                int resp = JOptionPane.showConfirmDialog(rootPane, "Venta de " + txtnombrecliente.getText()
+                        + " fue realizada satisfactoriamente. \n¿Desea imprimir recibo? ",
+                        "CONFIRMACION DE VENTA",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, icon);//showMessageDialog
+                if (resp != 1) {
+
+                    Map p = new HashMap();
+                    p.put("idventa", txtidventa.getText());
+                    JasperReport report;
+                    JasperPrint print;
+
+                    try {
+                        report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                                + "/src/Reportes/recibo.jrxml");
+                        print = JasperFillManager.fillReport(report, p, connection);
+
+                        JasperViewer view = new JasperViewer(print, false);
+                        view.setTitle("RECIBO");
+                        view.setVisible(true);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //aqui pones lo que quieras hacer si la respuesta es SI
+                } else {
+                    //y aqui va lo contrario si esque la respuesta seria NO
+                }
                 mostrar(idventa);
                 habilitarproducto();
             }

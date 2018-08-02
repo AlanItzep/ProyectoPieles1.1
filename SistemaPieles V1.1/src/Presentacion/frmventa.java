@@ -1054,10 +1054,12 @@ public class frmventa extends javax.swing.JInternalFrame {
                         report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
                                 + "/src/Reportes/recibo.jrxml");
                         print = JasperFillManager.fillReport(report, p, connection);
-
-                        JasperViewer view = new JasperViewer(print, false);
-                        view.setTitle("RECIBO");
-                        view.setVisible(true);
+//Aqui esta para que no haya vista previa e imprima de una vez 
+                        JasperViewer view = new JasperViewer(print, false);//borrar esto
+                        view.setTitle("RECIBO");//borar esto
+                        view.setVisible(true);//borrar esto tambien
+                        
+                        //JasperPrint.printReport(print, true); //Des comentar esto
 
                     } catch (Exception e) {
                         e.printStackTrace();

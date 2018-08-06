@@ -242,11 +242,11 @@ public class frmempleado extends javax.swing.JInternalFrame {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(236, 240, 241));
-        jLabel11.setText("Login");
+        jLabel11.setText("Password");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(236, 240, 241));
-        jLabel12.setText("Password");
+        jLabel12.setText("Login");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(236, 240, 241));
@@ -552,7 +552,7 @@ public class frmempleado extends javax.swing.JInternalFrame {
         
         int seleccionado = cboacceso.getSelectedIndex();
         dts.setAcceso((String) cboacceso.getItemAt(seleccionado));
-        int seleccionado2 = cboacceso.getSelectedIndex();
+        int seleccionado2 = cboestado.getSelectedIndex();
         dts.setEstado((String) cboestado.getItemAt(seleccionado2));
 
         if (accion.equals("guardar")) {

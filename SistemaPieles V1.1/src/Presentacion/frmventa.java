@@ -24,6 +24,7 @@ import java.util.Map;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -1059,10 +1060,10 @@ public class frmventa extends javax.swing.JInternalFrame {
                                 + "/src/Reportes/recibo.jrxml");
                         print = JasperFillManager.fillReport(report, p, connection);
 //Aqui esta para que no haya vista previa e imprima de una vez 
-                        JasperViewer view = new JasperViewer(print, false);//borrar esto
-                        view.setTitle("RECIBO");//borar esto
-                        view.setVisible(true);//borrar esto tambien
-                        
+                        //JasperViewer view = new JasperViewer(print, false);//borrar esto
+                        //view.setTitle("RECIBO");//borar esto
+                        //view.setVisible(true);//borrar esto tambien
+                        JasperPrintManager.printReport(print, true);
                         //JasperPrint.printReport(print, true); //Des comentar esto
 
                     } catch (Exception e) {

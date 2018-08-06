@@ -84,9 +84,6 @@ public class frmvistaproducto extends javax.swing.JFrame {
             }
         ));
         tablalistado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablalistadoMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tablalistadoMousePressed(evt);
             }
@@ -182,11 +179,6 @@ public class frmvistaproducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_tablalistadoMouseClicked
-
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -197,10 +189,12 @@ public class frmvistaproducto extends javax.swing.JFrame {
         if(evt.getClickCount()==2){
             int fila = tablalistado.getSelectedRow();
             
-            String cod, valor1, valor2;
+            String cod, valor1, valor2,valor3;
             cod = tablalistado.getValueAt(fila, 0).toString();
             valor1 = tablalistado.getValueAt(fila,1).toString();
             valor2 = tablalistado.getValueAt(fila, 3).toString();
+            valor3 = tablalistado.getValueAt(fila, 2).toString();
+            
             if(clave == "venta"){
                 frmventa.txtidproducto.setText(cod);
                 frmventa.txtnombreproducto.setText(valor1);
@@ -210,6 +204,7 @@ public class frmvistaproducto extends javax.swing.JFrame {
             if(clave =="inventario"){
                 frminventario.txtidproducto.setText(cod);
                 frminventario.txtnombreproducto.setText(valor1);
+                frminventario.txtpresentacion.setText(valor3);
                 clave = "";
             }
             

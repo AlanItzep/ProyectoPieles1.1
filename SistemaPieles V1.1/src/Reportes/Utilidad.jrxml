@@ -97,11 +97,11 @@ WHERE
 						<text><![CDATA[Tel: 7767-5822.]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="316" y="38" width="259" height="22" forecolor="#FFFFFF" uuid="9a8f5796-bc0a-425d-aff5-0c616af1db41"/>
+						<reportElement x="298" y="38" width="277" height="22" forecolor="#FFFFFF" uuid="9a8f5796-bc0a-425d-aff5-0c616af1db41"/>
 						<textElement textAlignment="Right" verticalAlignment="Middle">
 							<font size="16" isBold="true"/>
 						</textElement>
-						<text><![CDATA[Dirección: 38 avenida zona 8.]]></text>
+						<text><![CDATA[Dirección: 1era. calle D3 - 10 zona 8.]]></text>
 					</staticText>
 				</frame>
 			</frame>

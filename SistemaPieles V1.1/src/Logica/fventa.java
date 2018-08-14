@@ -46,13 +46,11 @@ public class fventa {
         totalventa = 0.00;
             modelo = new DefaultTableModel(null, titulos);
             
-            sSQL = "select v.idventa,v.idcliente, "
-                    + "(select nombre from persona where idpersona = v.idcliente) as clienten, "
-                    + "(select apellido from persona where idpersona = v.idcliente) as clineteap, "
-                    + "v.idempleado,(select nombre from persona where idpersona = v.idempleado) as empleadon,"
-                    + "(select apellido from persona where idpersona = v.idempleado) as empleadoap, "
+            sSQL = "select v.idventa, "
+                    + "v.idcliente, (select completo from persona where idpersona = v.idcliente) as clientec, "
+                    + "v.idempleado,(select completo from persona where idpersona = v.idempleado) as empleadoc,"
                     + "v.fechaventa,v.totalmedida,v.totalventa,v.tipopago "
-                    + "from venta v order by v.idventa desc";
+                    + "from venta v where idcliente like '%"+ buscar +"%' order by v.idventa desc";
             try{
                 Statement st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sSQL);
@@ -60,9 +58,9 @@ public class fventa {
                 while(rs.next()){
                     registro[0] = rs.getString("idventa");
                     registro[1] = rs.getString("idcliente");
-                    registro[2] = rs.getString("clienten")+" "+rs.getString("clineteap");
+                    registro[2] = rs.getString("clientec");
                     registro[3] = rs.getString("idempleado");
-                    registro[4] = rs.getString("empleadon")+" "+rs.getString("empleadoap");
+                    registro[4] = rs.getString("empleadoc");
                     registro[5] = rs.getString("fechaventa");
                     registro[6] = rs.getString("totalmedida");
                     registro[7] = rs.getString("totalventa");

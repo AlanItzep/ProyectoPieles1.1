@@ -49,7 +49,6 @@ public class frminicio extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         mnuventas = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
         mnuconsultas = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -150,17 +149,13 @@ public class frminicio extends javax.swing.JFrame {
         menuBar.add(mnuagregar);
 
         mnuventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/devices1_78351.png"))); // NOI18N
-        mnuventas.setText("Ventas");
+        mnuventas.setText("Venta");
         mnuventas.setPreferredSize(new java.awt.Dimension(119, 32));
-
-        jMenuItem5.setText("Generar venta");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+        mnuventas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuventasMouseClicked(evt);
             }
         });
-        mnuventas.add(jMenuItem5);
-
         menuBar.add(mnuventas);
 
         mnuconsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/printer_78349.png"))); // NOI18N
@@ -196,11 +191,6 @@ public class frminicio extends javax.swing.JFrame {
         mnuconfiguraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/settings_78352.png"))); // NOI18N
         mnuconfiguraciones.setText("Configuraciones");
         mnuconfiguraciones.setPreferredSize(new java.awt.Dimension(145, 32));
-        mnuconfiguraciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuconfiguracionesActionPerformed(evt);
-            }
-        });
 
         jMenuItem3.setText("Usuarios y accesos");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -266,10 +256,6 @@ public class frminicio extends javax.swing.JFrame {
         }catch(Exception e){}
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void mnuconfiguracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuconfiguracionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mnuconfiguracionesActionPerformed
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         frmempleado form = new frmempleado();
         escritorio.add(form);
@@ -281,23 +267,6 @@ public class frminicio extends javax.swing.JFrame {
             form.setMaximum(true);   
         }catch(Exception e){}
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-        frmventa form = new frmventa();
-        escritorio.add(form);
-        form.toFront();
-        form.setVisible(true);
-        try {   
-            form.setSelected(true);   
-            form.setMaximizable(true);   
-            form.setMaximum(true);   
-        }catch(Exception e){}
-
-        frmventa.txtidempleado.setText(lblidpersona.getText());
-        frmventa.txtnombreempleado.setText(lblnombre.getText() + " " + lblapellido.getText());
-        frmventa.idusuario = Integer.parseInt(lblidpersona.getText());
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
@@ -355,6 +324,23 @@ public class frminicio extends javax.swing.JFrame {
         this.setState(ICONIFIED);
     }//GEN-LAST:event_jMenu1MouseClicked
 
+    private void mnuventasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuventasMouseClicked
+        // TODO add your handling code here:
+        frmventa form = new frmventa();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+        try {   
+            form.setSelected(true);   
+            form.setMaximizable(true);   
+            form.setMaximum(true);   
+        }catch(Exception e){}
+
+        frmventa.txtidempleado.setText(lblidpersona.getText());
+        frmventa.txtnombreempleado.setText(lblnombre.getText() + " " + lblapellido.getText());
+        frmventa.idusuario = Integer.parseInt(lblidpersona.getText());
+    }//GEN-LAST:event_mnuventasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -402,7 +388,6 @@ public class frminicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

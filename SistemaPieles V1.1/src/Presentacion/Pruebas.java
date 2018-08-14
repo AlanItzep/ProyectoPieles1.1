@@ -72,6 +72,11 @@ public final class Pruebas extends javax.swing.JFrame {
                 cboclienteMouseReleased(evt);
             }
         });
+        cbocliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboclienteActionPerformed(evt);
+            }
+        });
 
         btnfiltrar.setText("Filtrar");
         btnfiltrar.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +150,10 @@ public final class Pruebas extends javax.swing.JFrame {
     private void btnfiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfiltrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnfiltrarActionPerformed
+
+    private void cboclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboclienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboclienteActionPerformed
 
     /**
      * @param args the command line arguments

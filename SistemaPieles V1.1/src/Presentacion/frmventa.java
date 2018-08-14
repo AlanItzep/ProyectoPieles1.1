@@ -255,7 +255,6 @@ public class frmventa extends javax.swing.JInternalFrame {
 
         if (accion.equals("guardar")) {
             if (func.insertar(dts)) {
-                JOptionPane.showMessageDialog(rootPane, "Agregado!");
                 mostrar(idventa);
                 habilitarproducto();
             }

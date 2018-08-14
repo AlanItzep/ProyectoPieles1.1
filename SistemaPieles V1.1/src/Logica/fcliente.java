@@ -6,8 +6,8 @@
 package Logica;
 
 import Datos.vcliente;
-import static Presentacion.frmreportes.cbochoseclientes;
-import static Presentacion.frmreportes.txtidcliente;
+import static Presentacion.frmsaldoabono.cbocliente;
+import static Presentacion.frmsaldoabono.txtidcliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,7 +48,7 @@ public class fcliente {
             
             sSQL = "select p.idpersona, p.nombre, p.apellido, p.completo, p.telefono, p.email, p.direccion,"
                     + "c.nit from persona p inner join cliente c "
-                    + "on p.idpersona = c.idpersona where nombre like '%"
+                    + "on p.idpersona = c.idpersona where completo like '%"
                     + buscar +"%' order by idpersona desc";
             try{
                 Statement st = cn.createStatement();
@@ -82,12 +82,11 @@ public class fcliente {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
             
-            cbochoseclientes.removeAllItems();
+            cbocliente.removeAllItems();
             
             while(rs.next()){
                 registro = rs.getString(1);
-                
-                cbochoseclientes.addItem(registro);
+                cbocliente.addItem(registro);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -106,16 +105,6 @@ public class fcliente {
                 txtidcliente.setText(id);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-    
-    public void consultartablas(String buscar){
-        sSQL = "";
-        try{
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-        }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
     }

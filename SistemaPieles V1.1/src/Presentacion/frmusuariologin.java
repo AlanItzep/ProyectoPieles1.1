@@ -203,8 +203,8 @@ public class frmusuariologin extends javax.swing.JFrame {
                 frminicio.lblacceso.setText(tablalistado.getValueAt(0, 3).toString());
 
                 if (!frminicio.lblacceso.getText().equals("Administrador")) {
-                    frminicio.mnuagregar.setEnabled(false);
                     frminicio.mnuconfiguraciones.setEnabled(false);
+                    frminicio.mnuconsultas.setEnabled(false);
                 }
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);

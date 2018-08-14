@@ -10,6 +10,7 @@ import Logica.conexion;
 import Logica.fabono;
 import Logica.fcliente;
 import Logica.fventa;
+import static Presentacion.Pruebas.cbocliente;
 import static Presentacion.frmreportes.idcliente;
 import static Presentacion.frmreportes.txtidcliente;
 import java.io.File;
@@ -38,6 +39,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     public frmsaldoabono() {
         initComponents();
         mostrar("");
+        mostrarclientes();
         this.setTitle("Abonos");
         inhabilitar();
     }
@@ -84,7 +86,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     
     void inhabilitar(){
         txtidcliente.setVisible(false);
-        btnfiltrar.setEnabled(false);
         
         txtidabono.setVisible(false);
         txtdescripcion.setEnabled(false);
@@ -100,8 +101,8 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         
         btneliminar.setEnabled(false);
         
-        txtidcliente.setText("");
-        txtnombrecliente.setText("");
+        //txtidcliente.setText("");
+        //txtnombrecliente.setText("");
         
         txtidabono.setText("");
         txtdescripcion.setText("");
@@ -207,6 +208,26 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         }
     }
     
+    public void mostrarclientes(){
+        try{
+            fcliente func = new fcliente();
+            func.cargarclientes();
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(rootPane,e);
+        }
+    }
+    
+    public void mostrarid(String buscar){
+        try{
+            fcliente func = new fcliente();
+            func.cargaridclientes(buscar);
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(rootPane,e);
+        }
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -245,16 +266,14 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablalistadoventa = new javax.swing.JTable();
-        txtnombrecliente = new javax.swing.JTextField();
         txtidcliente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        btnbuscarcliente = new javax.swing.JButton();
-        btnfiltrar = new javax.swing.JButton();
         lbltotalregistrosinventa = new javax.swing.JLabel();
         lbltotalmedidainventa = new javax.swing.JLabel();
         lbltotalventainventa = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        cbocliente = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(127, 140, 141));
         setClosable(true);
@@ -308,11 +327,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                 txtabonoActionPerformed(evt);
             }
         });
-        txtabono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtabonoKeyReleased(evt);
-            }
-        });
 
         btnnuevo.setBackground(new java.awt.Color(52, 73, 94));
         btnnuevo.setForeground(new java.awt.Color(255, 255, 255));
@@ -347,12 +361,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         jLabel7.setForeground(new java.awt.Color(236, 240, 241));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Fecha abono");
-
-        txtsaldo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsaldoActionPerformed(evt);
-            }
-        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(236, 240, 241));
@@ -528,35 +536,11 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablalistadoventa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablalistadoventaMouseClicked(evt);
-            }
-        });
         jScrollPane3.setViewportView(tablalistadoventa);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(236, 240, 241));
         jLabel8.setText("Cliente");
-
-        btnbuscarcliente.setBackground(new java.awt.Color(255, 255, 255));
-        btnbuscarcliente.setForeground(new java.awt.Color(52, 73, 94));
-        btnbuscarcliente.setText("...");
-        btnbuscarcliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarclienteActionPerformed(evt);
-            }
-        });
-
-        btnfiltrar.setBackground(new java.awt.Color(52, 73, 94));
-        btnfiltrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnfiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/loupe_78347.png"))); // NOI18N
-        btnfiltrar.setText("Filtrar");
-        btnfiltrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnfiltrarActionPerformed(evt);
-            }
-        });
 
         lbltotalregistrosinventa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbltotalregistrosinventa.setForeground(new java.awt.Color(236, 240, 241));
@@ -590,6 +574,13 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             }
         });
 
+        cbocliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbocliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cboclienteMouseReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -601,7 +592,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
                         .addComponent(lbltotalregistrosinventa)
                         .addGap(18, 18, 18)
                         .addComponent(lbltotalmedidainventa)
@@ -609,14 +600,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                         .addComponent(lbltotalventainventa))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnfiltrar)
+                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -624,15 +611,14 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscarcliente)
-                    .addComponent(btnfiltrar)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(cbocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltotalregistrosinventa)
                     .addComponent(lbltotalmedidainventa)
@@ -701,11 +687,11 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
         //validadion de ingreso de datos
-        if(txtnombrecliente.getText().length() == 0){
+        /*if(txtnombrecliente.getText().length() == 0){
             JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un cliente");
             txtnombrecliente.requestFocus();
             return;
-        }
+        }*/
         
 
         if(txtdescripcion.getText().length() == 0){
@@ -790,44 +776,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
-    private void btnbuscarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarclienteActionPerformed
-        // TODO add your handling code here:
-        frmvistaventa form = new frmvistaventa();
-        form.toFront();
-        form.setVisible(true);
-        
-        btnfiltrar.setEnabled(true);
-    }//GEN-LAST:event_btnbuscarclienteActionPerformed
-
-    private void txtsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsaldoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtsaldoActionPerformed
-
-    private void txtabonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtabonoKeyReleased
-        // TODO add your handling code here:
-        /*Double resultado;
-        resultado = Double.parseDouble(txttotalventa.getText())-Double.parseDouble(txtabono.getText());
-        txtsaldo.setText(resultado.toString());*/
-    }//GEN-LAST:event_txtabonoKeyReleased
-
-    private void tablalistadoventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoventaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tablalistadoventaMouseClicked
-
-    private void btnfiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfiltrarActionPerformed
-        // TODO add your handling code here:
-        if (txtidcliente.getText().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Seleccione un cliente por favor.");
-            return;
-        }
-        
-        idcliente = txtidcliente.getText();
-        //int seleccionado = cbocliente.getSelectedIndex();
-        //mostrar(cbocliente.getItemAt(seleccionado));
-        mostrar(idcliente);
-        habilitar();
-    }//GEN-LAST:event_btnfiltrarActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (txtidcliente.getText().length() == 0) {
@@ -878,6 +826,17 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void cboclienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboclienteMouseReleased
+        // TODO add your handling code here:
+        int seleccionado = cbocliente.getSelectedIndex();
+        mostrarid(cbocliente.getItemAt(seleccionado));
+        idcliente = txtidcliente.getText();
+        //int seleccionado = cbocliente.getSelectedIndex();
+        //mostrar(cbocliente.getItemAt(seleccionado));
+        mostrar(idcliente);
+        habilitar();
+    }//GEN-LAST:event_cboclienteMouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -915,13 +874,12 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnbuscarcliente;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btneliminar;
-    private javax.swing.JButton btnfiltrar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
+    public static javax.swing.JComboBox<String> cbocliente;
     private com.toedter.calendar.JDateChooser dcfechaabono;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -950,7 +908,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txtdescripcion;
     private javax.swing.JTextField txtidabono;
     public static javax.swing.JTextField txtidcliente;
-    public static javax.swing.JTextField txtnombrecliente;
     private javax.swing.JTextField txtsaldo;
     public static javax.swing.JTextField txttotalmedida;
     public static javax.swing.JTextField txttotalventa;

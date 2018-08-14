@@ -351,12 +351,6 @@ public class frminventario extends javax.swing.JInternalFrame {
         jLabel14.setForeground(new java.awt.Color(236, 240, 241));
         jLabel14.setText("Estado");
 
-        txtcantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcantidadActionPerformed(evt);
-            }
-        });
-
         cboestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingreso", "Salida" }));
 
         txtpresentacion.setColumns(20);
@@ -646,10 +640,6 @@ public class frminventario extends javax.swing.JInternalFrame {
             mostrar(txtidproducto.getText());
         }
     }//GEN-LAST:event_txtnombreproductoActionPerformed
-
-    private void txtcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcantidadActionPerformed
 
     private void btnbuscarempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarempleadoActionPerformed
         // TODO add your handling code here:

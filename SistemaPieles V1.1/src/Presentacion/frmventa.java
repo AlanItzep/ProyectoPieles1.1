@@ -36,11 +36,12 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     public frmventa() {
         initComponents();
+        //btnbuscarproducto.setMnemonic(KeyEvent.);
         mostrar(idventa);
         this.setTitle("Venta");
         inhabilitar();
         inhabilitar2();
-        
+
     }
 
     private String accion = "guardar";
@@ -91,9 +92,6 @@ public class frmventa extends javax.swing.JInternalFrame {
         tablaclientes.getColumnModel().getColumn(8).setPreferredWidth(0);
     }
 
-    
-    
-    
     void inhabilitar() {
         txtidventa.setVisible(false);
         txtidcliente.setVisible(false);
@@ -196,16 +194,17 @@ public class frmventa extends javax.swing.JInternalFrame {
         txtsubtotal.setText("");
     }
 
-    void inhabilitar2(){
+    void inhabilitar2() {
         txtidventa.setText("");
         txtidcliente.setText("");
-        
+
         txtnombrecliente.setText("");
         dcfechaventa.cleanup();
         txttotalmedida.setText("0.00");
         txttotalventa.setText("0.00");
         cbotipopago.setSelectedIndex(0);
     }
+
     void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
@@ -223,18 +222,18 @@ public class frmventa extends javax.swing.JInternalFrame {
             ocultar_columnas();
 
             lbltotalregistros.setText("Total Registros:  " + Integer.toString(func2.totalregistros));
-            lblconsumo.setText("Consumo Total $. " + func2.totalconsumo);
-            lbltotalmedida.setText("Medida Total " + Double.toString(func2.totalmedida));
+            lblconsumo.setText("Consumo Total Q. " + String.format("%.2f",func2.totalconsumo));
+            lbltotalmedida.setText("Medida Total " + String.format("%.2f", func2.totalmedida));
 
-            txttotalmedida.setText(Double.toString(func2.totalmedida));
-            txttotalventa.setText(Double.toString(func2.totalconsumo));
+            txttotalmedida.setText(String.format("%.2f", func2.totalmedida));
+            txttotalventa.setText(String.format("%.2f", func2.totalconsumo));
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
     }
 
     void actionClick() {
-        
+
         if (txtnombreproducto.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes seleccionar un producto");
             btnbuscarproducto.requestFocus();
@@ -311,6 +310,7 @@ public class frmventa extends javax.swing.JInternalFrame {
         lbltotalmedida = new javax.swing.JLabel();
         btnactualizar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        lblpies = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txtsubtotal = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -635,11 +635,15 @@ public class frmventa extends javax.swing.JInternalFrame {
             }
         });
 
+        lblpies.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblpies.setForeground(new java.awt.Color(236, 240, 241));
+        lblpies.setText("(pies)");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(jButton1)
@@ -652,7 +656,9 @@ public class frmventa extends javax.swing.JInternalFrame {
                 .addComponent(lbltotalregistros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbltotalmedida)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblpies)
+                .addGap(34, 34, 34)
                 .addComponent(lblconsumo)
                 .addContainerGap())
         );
@@ -665,7 +671,8 @@ public class frmventa extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltotalregistros)
                     .addComponent(lblconsumo)
-                    .addComponent(lbltotalmedida))
+                    .addComponent(lbltotalmedida)
+                    .addComponent(lblpies))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btneliminar)
@@ -705,6 +712,9 @@ public class frmventa extends javax.swing.JInternalFrame {
         txtmedida.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtmedidaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtmedidaKeyTyped(evt);
             }
         });
 
@@ -911,7 +921,7 @@ public class frmventa extends javax.swing.JInternalFrame {
         frmvistaproducto form = new frmvistaproducto();
         form.toFront();
         form.setVisible(true);
-        
+
     }//GEN-LAST:event_btnbuscarproductoActionPerformed
 
     private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
@@ -976,6 +986,13 @@ public class frmventa extends javax.swing.JInternalFrame {
         lblconsumo.setVisible(true);
         mostrar(idventa);
         habilitarproducto();
+
+        //abrir la ventana para escoger productos
+        frmvistaproducto.clave = "venta";
+        frmvistaproducto form = new frmvistaproducto();
+        form.toFront();
+        form.setVisible(true);
+
     }//GEN-LAST:event_btnguardarproductoActionPerformed
 
     private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
@@ -996,14 +1013,97 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_tablalistadoMousePressed
 
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
     private void txtmedidaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmedidaKeyReleased
         // TODO add your handling code here:
-        Double resultado;
-        resultado = Double.parseDouble(txtmedida.getText()) * Double.parseDouble(txtprecioventa.getText());
-        txtsubtotal.setText(resultado.toString());
-        
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Double resultado;
+            resultado = Double.parseDouble(txtmedida.getText()) * Double.parseDouble(txtprecioventa.getText());
+            txtsubtotal.setText(resultado.toString());
             actionClick();
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_DIVIDE) {
+            frmvistaproducto.clave = "venta";
+            frmvistaproducto form = new frmvistaproducto();
+            form.toFront();
+            form.setVisible(true);
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_MULTIPLY) {
+            accion = "editar";
+
+            idventa = txtidventa2.getText();
+            mostrar(idventa);
+
+            vventa dts = new vventa();
+            fventa func = new fventa();
+
+            dts.setIdcliente(Integer.parseInt(txtidcliente.getText()));
+            dts.setIdempleado(Integer.parseInt(txtidempleado.getText()));
+
+            Calendar cal;
+            int d, m, a;
+            cal = dcfechaventa.getCalendar();
+            d = cal.get(Calendar.DAY_OF_MONTH);
+            m = cal.get(Calendar.MONTH);
+            a = cal.get(Calendar.YEAR) - 1900;
+
+            dts.setFechaventa(new Date(a, m, d));
+
+            dts.setTotalmedida(Double.parseDouble(txttotalmedida.getText()));
+            dts.setTotalventa(Double.parseDouble(txttotalventa.getText()));
+
+            int seleccionado = cbotipopago.getSelectedIndex();
+            dts.setTipopago((String) cbotipopago.getItemAt(seleccionado));
+
+            if (accion.equals("editar")) {
+                dts.setIdventa(Integer.parseInt(txtidventa.getText()));
+
+                if (func.editar(dts)) {
+                    int resp = JOptionPane.showConfirmDialog(rootPane, "Venta de " + txtnombrecliente.getText()
+                            + " fue realizada satisfactoriamente. \n¿Desea imprimir recibo? ",
+                            "CONFIRMACION DE VENTA",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, icon);//showMessageDialog
+                    if (resp != 1) {
+
+                        Map p = new HashMap();
+                        p.put("idventa", txtidventa.getText());
+                        JasperReport report;
+                        JasperPrint print;
+
+                        try {
+                            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                                    + "/src/Reportes/recibo.jrxml");
+                            print = JasperFillManager.fillReport(report, p, connection);
+//Aqui esta para que no haya vista previa e imprima de una vez 
+                            //JasperViewer view = new JasperViewer(print, false);//borrar esto
+                            //view.setTitle("RECIBO");//borar esto
+                            //view.setVisible(true);//borrar esto tambien
+                            JasperPrintManager.printReport(print, true);
+                            //JasperPrint.printReport(print, true); //Des comentar esto
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        //aqui pones lo que quieras hacer si la respuesta es SI
+                    } else {
+                        //y aqui va lo contrario si esque la respuesta seria NO
+                    }
+                    mostrar(idventa);
+                    habilitarproducto();
+                }
+            }
+            inhabilitar2();
+            jPanel1.setVisible(true);
+            jPanel2.setVisible(false);
+            jPanel3.setVisible(false);
         }
     }//GEN-LAST:event_txtmedidaKeyReleased
 
@@ -1035,10 +1135,10 @@ public class frmventa extends javax.swing.JInternalFrame {
 
         int seleccionado = cbotipopago.getSelectedIndex();
         dts.setTipopago((String) cbotipopago.getItemAt(seleccionado));
-        
+
         if (accion.equals("editar")) {
             dts.setIdventa(Integer.parseInt(txtidventa.getText()));
-            
+
             if (func.editar(dts)) {
                 int resp = JOptionPane.showConfirmDialog(rootPane, "Venta de " + txtnombrecliente.getText()
                         + " fue realizada satisfactoriamente. \n¿Desea imprimir recibo? ",
@@ -1111,21 +1211,21 @@ public class frmventa extends javax.swing.JInternalFrame {
         }
         Map p = new HashMap();
         p.put("idventa", txtidventa.getText());
-            JasperReport report;
-            JasperPrint print;
+        JasperReport report;
+        JasperPrint print;
 
-            try {
-                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                        + "/src/Reportes/Utilidad.jrxml");
-                print = JasperFillManager.fillReport(report, p, connection);
+        try {
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/Reportes/Utilidad.jrxml");
+            print = JasperFillManager.fillReport(report, p, connection);
 
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Reporte de utilidad de venta");
-                view.setVisible(true);
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("Reporte de utilidad de venta");
+            view.setVisible(true);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnreputiActionPerformed
 
     private void btnrepreciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrepreciActionPerformed
@@ -1136,22 +1236,34 @@ public class frmventa extends javax.swing.JInternalFrame {
         }
         Map p = new HashMap();
         p.put("idventa", txtidventa.getText());
-            JasperReport report;
-            JasperPrint print;
+        JasperReport report;
+        JasperPrint print;
 
-            try {
-                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                        + "/src/Reportes/recibo.jrxml");
-                print = JasperFillManager.fillReport(report, p, connection);
+        try {
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/Reportes/recibo.jrxml");
+            print = JasperFillManager.fillReport(report, p, connection);
 
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("RECIBO");
-                view.setVisible(true);
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("RECIBO");
+            view.setVisible(true);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnrepreciActionPerformed
+
+    private void txtmedidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmedidaKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+
+        }
+        if (evt.getKeyChar() == '.' && txtmedida.getText().contains(".")) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtmedidaKeyTyped
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1194,6 +1306,7 @@ public class frmventa extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblconsumo;
     private javax.swing.JLabel lblinstruccion;
+    private javax.swing.JLabel lblpies;
     private javax.swing.JLabel lbltotalmedida;
     private javax.swing.JLabel lbltotalregistros;
     private javax.swing.JTable tablaclientes;

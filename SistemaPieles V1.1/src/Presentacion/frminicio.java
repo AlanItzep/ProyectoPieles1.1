@@ -45,10 +45,10 @@ public class frminicio extends javax.swing.JFrame {
         lblapellido = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        mnuventas = new javax.swing.JMenu();
         mnuagregar = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        mnuventas = new javax.swing.JMenu();
         mnuconsultas = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -125,6 +125,16 @@ public class frminicio extends javax.swing.JFrame {
         });
         menuBar.add(jMenu1);
 
+        mnuventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/devices1_78351.png"))); // NOI18N
+        mnuventas.setText("Venta");
+        mnuventas.setPreferredSize(new java.awt.Dimension(119, 32));
+        mnuventas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuventasMouseClicked(evt);
+            }
+        });
+        menuBar.add(mnuventas);
+
         mnuagregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/folder_78343.png"))); // NOI18N
         mnuagregar.setText("Agregar");
         mnuagregar.setMaximumSize(new java.awt.Dimension(119, 32767));
@@ -147,16 +157,6 @@ public class frminicio extends javax.swing.JFrame {
         mnuagregar.add(jMenuItem4);
 
         menuBar.add(mnuagregar);
-
-        mnuventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/devices1_78351.png"))); // NOI18N
-        mnuventas.setText("Venta");
-        mnuventas.setPreferredSize(new java.awt.Dimension(119, 32));
-        mnuventas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnuventasMouseClicked(evt);
-            }
-        });
-        menuBar.add(mnuventas);
 
         mnuconsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/printer_78349.png"))); // NOI18N
         mnuconsultas.setText("Consultas");

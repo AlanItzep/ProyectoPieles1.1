@@ -37,7 +37,7 @@ public class frmventa extends javax.swing.JInternalFrame {
     public frmventa() {
         initComponents();
         mostrar(idventa);
-        this.setTitle("Detalle Venta");
+        this.setTitle("Venta");
         inhabilitar();
         inhabilitar2();
         
@@ -131,6 +131,8 @@ public class frmventa extends javax.swing.JInternalFrame {
 
         btnguardarproducto.setEnabled(false);
         btnbuscarproducto.setEnabled(false);
+        btnreputi.setVisible(false);
+        btnrepreci.setVisible(false);
         /*
         txtidventa.setText("");
         txtidcliente.setText("");
@@ -298,8 +300,8 @@ public class frmventa extends javax.swing.JInternalFrame {
         tablaclientes = new javax.swing.JTable();
         lblinstruccion = new javax.swing.JLabel();
         chkmodificar = new javax.swing.JCheckBox();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnreputi = new javax.swing.JButton();
+        btnrepreci = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablalistado = new javax.swing.JTable();
@@ -331,7 +333,7 @@ public class frmventa extends javax.swing.JInternalFrame {
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/devices_78336.png"))); // NOI18N
         setPreferredSize(new java.awt.Dimension(1010, 560));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(52, 73, 94));
         jLabel1.setText("Venta");
 
@@ -437,34 +439,29 @@ public class frmventa extends javax.swing.JInternalFrame {
         chkmodificar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chkmodificar.setForeground(new java.awt.Color(236, 240, 241));
         chkmodificar.setText("Modificar venta");
-        chkmodificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                chkmodificarMousePressed(evt);
-            }
-        });
         chkmodificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkmodificarActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(52, 73, 94));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/loupe_78347.png"))); // NOI18N
-        jButton2.setText("Utilidades por venta");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnreputi.setBackground(new java.awt.Color(52, 73, 94));
+        btnreputi.setForeground(new java.awt.Color(255, 255, 255));
+        btnreputi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/loupe_78347.png"))); // NOI18N
+        btnreputi.setText("Utilidades por venta");
+        btnreputi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnreputiActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(52, 73, 94));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/printer_78349.png"))); // NOI18N
-        jButton3.setText("Generar Recibo");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnrepreci.setBackground(new java.awt.Color(52, 73, 94));
+        btnrepreci.setForeground(new java.awt.Color(255, 255, 255));
+        btnrepreci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/printer_78349.png"))); // NOI18N
+        btnrepreci.setText("Generar Recibo");
+        btnrepreci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnrepreciActionPerformed(evt);
             }
         });
 
@@ -518,9 +515,9 @@ public class frmventa extends javax.swing.JInternalFrame {
                             .addComponent(chkmodificar)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(btnreputi)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3)))))
+                                .addComponent(btnrepreci)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -570,8 +567,8 @@ public class frmventa extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnreputi)
+                    .addComponent(btnrepreci))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1082,20 +1079,19 @@ public class frmventa extends javax.swing.JInternalFrame {
         jPanel3.setVisible(false);
     }//GEN-LAST:event_btnactualizarActionPerformed
 
-    private void chkmodificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkmodificarMousePressed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_chkmodificarMousePressed
-
     private void chkmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkmodificarActionPerformed
         // TODO add your handling code here:
         if (chkmodificar.isSelected() == false) {
             lblinstruccion.setText("");
             jScrollPane1.setVisible(false);
+            btnreputi.setVisible(false);
+            btnrepreci.setVisible(false);
         }
         if (chkmodificar.isSelected() == true) {
             lblinstruccion.setText("Escoja un cliente de la lista por favor:");
             jScrollPane1.setVisible(true);
+            btnreputi.setVisible(true);
+            btnrepreci.setVisible(true);
         }
     }//GEN-LAST:event_chkmodificarActionPerformed
 
@@ -1107,7 +1103,7 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnreputiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreputiActionPerformed
         // TODO add your handling code here:
         if (txtidventa.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Seleccione una venta en la tabla por favor.");
@@ -1130,9 +1126,9 @@ public class frmventa extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnreputiActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnrepreciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrepreciActionPerformed
         // TODO add your handling code here:
         if (txtidventa.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Seleccione una venta en la tabla por favor.");
@@ -1155,7 +1151,7 @@ public class frmventa extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnrepreciActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1174,12 +1170,12 @@ public class frmventa extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnguardarproducto;
     private javax.swing.JButton btnnuevo;
+    private javax.swing.JButton btnrepreci;
+    private javax.swing.JButton btnreputi;
     private javax.swing.JComboBox<String> cbotipopago;
     private javax.swing.JCheckBox chkmodificar;
     private com.toedter.calendar.JDateChooser dcfechaventa;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

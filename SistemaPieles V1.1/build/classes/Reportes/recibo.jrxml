@@ -86,21 +86,21 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Dirección: 38 avenida zona 8.]]></text>
+				<text><![CDATA[Teléfonos:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="44" width="186" height="12" uuid="af988d86-1a80-463f-ae3a-d6854525ce87"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Tel: 7767-5822.]]></text>
+				<text><![CDATA[4752-6691 / 7767-5822.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="20" width="186" height="12" uuid="c0bc2ebe-f9c4-4cda-8815-7ee00c69549d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[NIT: 1189082-7]]></text>
+				<text><![CDATA[Dirección: 1era. calle D3 - 10 zona 8.]]></text>
 			</staticText>
 		</band>
 	</title>

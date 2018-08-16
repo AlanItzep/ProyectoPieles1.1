@@ -34,18 +34,25 @@ FROM
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="790c2ccb-7ae9-43c9-9355-c96c2834aaa6"/>
 				<staticText>
-					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="e2a104b3-93e1-46ae-9c5f-fe2c013e085e"/>
-					<textElement>
-						<font size="34" isBold="true"/>
+					<reportElement x="20" y="0" width="234" height="92" forecolor="#FFFFFF" uuid="e2a104b3-93e1-46ae-9c5f-fe2c013e085e"/>
+					<textElement verticalAlignment="Middle">
+						<font size="44" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Tecnopiel  ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="4684a612-c096-4c0b-8b4b-4024400082fd"/>
+					<reportElement x="395" y="20" width="180" height="20" forecolor="#FFFFFF" uuid="4684a612-c096-4c0b-8b4b-4024400082fd"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Listado de Clientes]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="292" y="44" width="283" height="22" forecolor="#FFFFFF" uuid="0cc0845f-6da8-494c-902e-8fa83ea17bcc"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="16" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Dirección: 1era. calle D3 - 10 zona 8.]]></text>
 				</staticText>
 			</frame>
 		</band>

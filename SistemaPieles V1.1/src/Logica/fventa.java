@@ -50,7 +50,7 @@ public class fventa {
                     + "v.idcliente, (select completo from persona where idpersona = v.idcliente) as clientec, "
                     + "v.idempleado,(select completo from persona where idpersona = v.idempleado) as empleadoc,"
                     + "v.fechaventa,v.totalmedida,v.totalventa,v.tipopago "
-                    + "from venta v where idcliente like '%"+ buscar +"%' order by v.idventa desc";
+                    + "from venta v order by v.idventa desc";
             try{
                 Statement st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sSQL);

@@ -134,8 +134,8 @@ WHERE
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cliente_nit}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="25" y="49" width="100" height="12" uuid="7ba1c579-613d-4735-9f85-e7cc8390e93f"/>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="27" y="49" width="100" height="12" uuid="7ba1c579-613d-4735-9f85-e7cc8390e93f"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>

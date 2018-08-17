@@ -7,7 +7,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\Proyecto Pieles\\ProyectoPieles1.1\\SistemaPieles V1.1\\src\\Reportes\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["C:\\ProyectoPieles\\ProyectoPieles1.1\\SistemaPieles V1.1\\src\\Reportes\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT

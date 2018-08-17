@@ -29,6 +29,7 @@ public class frminventario extends javax.swing.JInternalFrame {
     }
     
     private String accion = "guardar";
+    public static int idusuario;
     
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -57,7 +58,6 @@ public class frminventario extends javax.swing.JInternalFrame {
         txtcantidad.setEnabled(false);
         cboestado.setEnabled(false);
         
-        btnbuscarempleado.setEnabled(false);
         btnbuscarproducto.setEnabled(false);
         
         btnguardar.setEnabled(false);
@@ -80,7 +80,6 @@ public class frminventario extends javax.swing.JInternalFrame {
         txtcantidad.setEnabled(true);
         cboestado.setEnabled(true);
         
-        btnbuscarempleado.setEnabled(true);
         btnbuscarproducto.setEnabled(true);
         
         btnguardar.setEnabled(true);
@@ -90,9 +89,10 @@ public class frminventario extends javax.swing.JInternalFrame {
         btnbuscar.setEnabled(true);
         btneliminar.setEnabled(true);
         
-        txtnombreempleado.setText("");
         txtnombreproducto.setText("");
         txtpresentacion.setText("");
+        txtcantidad.setText("");
+        dcfecha.cleanup();
         
     }
     
@@ -100,7 +100,7 @@ public class frminventario extends javax.swing.JInternalFrame {
         try{
             DefaultTableModel modelo;
             finventario func = new finventario();
-            modelo = func.mostrar(txtidproducto.getText());
+            modelo = func.mostrar(buscar);
             
             tablalistado.setModel(modelo);
             ocultar_columnas();
@@ -134,6 +134,7 @@ public class frminventario extends javax.swing.JInternalFrame {
         lblregistros = new javax.swing.JLabel();
         lblingresos = new javax.swing.JLabel();
         lbltotal = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtidinventario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -154,7 +155,6 @@ public class frminventario extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         txtidempleado = new javax.swing.JTextField();
         txtidproducto = new javax.swing.JTextField();
-        btnbuscarempleado = new javax.swing.JButton();
         btnbuscarproducto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -235,6 +235,16 @@ public class frminventario extends javax.swing.JInternalFrame {
         lbltotal.setForeground(new java.awt.Color(236, 240, 241));
         lbltotal.setText("jLabel4");
 
+        jButton1.setBackground(new java.awt.Color(52, 73, 94));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/server_78355.png"))); // NOI18N
+        jButton1.setText("TODO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -252,7 +262,9 @@ public class frminventario extends javax.swing.JInternalFrame {
                         .addGap(44, 44, 44)
                         .addComponent(btneliminar)
                         .addGap(42, 42, 42)
-                        .addComponent(btnsalir))
+                        .addComponent(btnsalir)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblregistros)
                         .addGap(18, 18, 18)
@@ -261,7 +273,7 @@ public class frminventario extends javax.swing.JInternalFrame {
                         .addComponent(lblsalidas)
                         .addGap(18, 18, 18)
                         .addComponent(lbltotal)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,9 +286,10 @@ public class frminventario extends javax.swing.JInternalFrame {
                         .addComponent(btnsalir))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
-                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblsalidas)
@@ -361,15 +374,6 @@ public class frminventario extends javax.swing.JInternalFrame {
         jLabel13.setForeground(new java.awt.Color(236, 240, 241));
         jLabel13.setText("Cantidad");
 
-        btnbuscarempleado.setBackground(new java.awt.Color(149, 165, 166));
-        btnbuscarempleado.setForeground(new java.awt.Color(236, 240, 241));
-        btnbuscarempleado.setText("...");
-        btnbuscarempleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarempleadoActionPerformed(evt);
-            }
-        });
-
         btnbuscarproducto.setBackground(new java.awt.Color(149, 165, 166));
         btnbuscarproducto.setForeground(new java.awt.Color(236, 240, 241));
         btnbuscarproducto.setText("...");
@@ -413,15 +417,12 @@ public class frminventario extends javax.swing.JInternalFrame {
                                 .addComponent(txtidproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtnombreempleado)
-                                    .addComponent(txtnombreproducto))
+                                .addComponent(txtnombreproducto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnbuscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnbuscarempleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnbuscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(dcfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtcantidad, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(txtcantidad, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtnombreempleado))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -432,12 +433,10 @@ public class frminventario extends javax.swing.JInternalFrame {
                     .addComponent(txtidinventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtnombreempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnbuscarempleado)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -467,7 +466,7 @@ public class frminventario extends javax.swing.JInternalFrame {
                     .addComponent(btnnuevo)
                     .addComponent(btnguardar)
                     .addComponent(btncancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -639,13 +638,6 @@ public class frminventario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtnombreproductoActionPerformed
 
-    private void btnbuscarempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarempleadoActionPerformed
-        // TODO add your handling code here:
-        frmvistaempleado form = new frmvistaempleado();
-        form.toFront();
-        form.setVisible(true);
-    }//GEN-LAST:event_btnbuscarempleadoActionPerformed
-
     private void btnbuscarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarproductoActionPerformed
         // TODO add your handling code here:
         frmvistaproducto.clave = "inventario";
@@ -654,6 +646,11 @@ public class frminventario extends javax.swing.JInternalFrame {
         form.setVisible(true);
         
     }//GEN-LAST:event_btnbuscarproductoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        mostrar("");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -692,7 +689,6 @@ public class frminventario extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;
-    private javax.swing.JButton btnbuscarempleado;
     private javax.swing.JButton btnbuscarproducto;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btneliminar;
@@ -701,6 +697,7 @@ public class frminventario extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnsalir;
     private javax.swing.JComboBox<String> cboestado;
     private com.toedter.calendar.JDateChooser dcfecha;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

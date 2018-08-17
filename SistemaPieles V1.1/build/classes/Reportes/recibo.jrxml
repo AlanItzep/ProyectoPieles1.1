@@ -162,7 +162,7 @@ WHERE
 				</textElement>
 				<textFieldExpression><![CDATA[$F{venta_idventa}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="32" y="37" width="100" height="12" uuid="1c19b4cf-509e-42b5-8a5e-5564c1aabb37"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>

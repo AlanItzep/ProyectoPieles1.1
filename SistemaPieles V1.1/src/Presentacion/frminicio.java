@@ -293,6 +293,9 @@ public class frminicio extends javax.swing.JFrame {
             form.setMaximum(true);   
         }catch(Exception e){}
         
+        frminventario.txtidempleado.setText(lblidpersona.getText());
+        frminventario.txtnombreempleado.setText(lblnombre.getText() + " " + lblapellido.getText());
+        frminventario.idusuario = Integer.parseInt(lblidpersona.getText());
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed

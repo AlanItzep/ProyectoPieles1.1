@@ -131,6 +131,10 @@ public class frmventa extends javax.swing.JInternalFrame {
         btnbuscarproducto.setEnabled(false);
         btnreputi.setVisible(false);
         btnrepreci.setVisible(false);
+        
+        jScrollPane1.setVisible(true);
+        btnreputi.setVisible(true);
+        btnrepreci.setVisible(true);
         /*
         txtidventa.setText("");
         txtidcliente.setText("");
@@ -174,6 +178,10 @@ public class frmventa extends javax.swing.JInternalFrame {
         txttotalventa.setText("0.00");
 
         txtnombrecliente.setText("");
+
+        jScrollPane1.setVisible(true);
+        btnreputi.setVisible(true);
+        btnrepreci.setVisible(true);
     }
 
     void habilitarproducto() {
@@ -222,7 +230,7 @@ public class frmventa extends javax.swing.JInternalFrame {
             ocultar_columnas();
 
             lbltotalregistros.setText("Total Registros:  " + Integer.toString(func2.totalregistros));
-            lblconsumo.setText("Consumo Total Q. " + String.format("%.2f",func2.totalconsumo));
+            lblconsumo.setText("Consumo Total Q. " + String.format("%.2f", func2.totalconsumo));
             lbltotalmedida.setText("Medida Total " + String.format("%.2f", func2.totalmedida));
 
             txttotalmedida.setText(String.format("%.2f", func2.totalmedida));
@@ -298,7 +306,6 @@ public class frmventa extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaclientes = new javax.swing.JTable();
         lblinstruccion = new javax.swing.JLabel();
-        chkmodificar = new javax.swing.JCheckBox();
         btnreputi = new javax.swing.JButton();
         btnrepreci = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -434,16 +441,7 @@ public class frmventa extends javax.swing.JInternalFrame {
 
         lblinstruccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblinstruccion.setForeground(new java.awt.Color(236, 240, 241));
-
-        chkmodificar.setBackground(new java.awt.Color(52, 73, 94));
-        chkmodificar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        chkmodificar.setForeground(new java.awt.Color(236, 240, 241));
-        chkmodificar.setText("Modificar venta");
-        chkmodificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkmodificarActionPerformed(evt);
-            }
-        });
+        lblinstruccion.setText("Editar una venta existente:");
 
         btnreputi.setBackground(new java.awt.Color(52, 73, 94));
         btnreputi.setForeground(new java.awt.Color(255, 255, 255));
@@ -512,7 +510,6 @@ public class frmventa extends javax.swing.JInternalFrame {
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblinstruccion)
-                            .addComponent(chkmodificar)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnreputi)
@@ -559,9 +556,7 @@ public class frmventa extends javax.swing.JInternalFrame {
                     .addComponent(btnnuevo)
                     .addComponent(btnguardar)
                     .addComponent(btncancelar))
-                .addGap(14, 14, 14)
-                .addComponent(chkmodificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(19, 19, 19)
                 .addComponent(lblinstruccion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1179,22 +1174,6 @@ public class frmventa extends javax.swing.JInternalFrame {
         jPanel3.setVisible(false);
     }//GEN-LAST:event_btnactualizarActionPerformed
 
-    private void chkmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkmodificarActionPerformed
-        // TODO add your handling code here:
-        if (chkmodificar.isSelected() == false) {
-            lblinstruccion.setText("");
-            jScrollPane1.setVisible(false);
-            btnreputi.setVisible(false);
-            btnrepreci.setVisible(false);
-        }
-        if (chkmodificar.isSelected() == true) {
-            lblinstruccion.setText("Escoja un cliente de la lista por favor:");
-            jScrollPane1.setVisible(true);
-            btnreputi.setVisible(true);
-            btnrepreci.setVisible(true);
-        }
-    }//GEN-LAST:event_chkmodificarActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         jPanel1.setVisible(true);
@@ -1285,7 +1264,6 @@ public class frmventa extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnrepreci;
     private javax.swing.JButton btnreputi;
     private javax.swing.JComboBox<String> cbotipopago;
-    private javax.swing.JCheckBox chkmodificar;
     private com.toedter.calendar.JDateChooser dcfechaventa;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

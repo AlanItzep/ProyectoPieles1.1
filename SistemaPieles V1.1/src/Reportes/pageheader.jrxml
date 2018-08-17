@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pageheader" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d88ef285-5215-41b3-beb4-5134c8eadb88">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pageheader" language="groovy" pageWidth="595" pageHeight="802" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d88ef285-5215-41b3-beb4-5134c8eadb88">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -55,9 +55,9 @@ WHERE
 				<textFieldExpression><![CDATA[$F{cliente_nit}]]></textFieldExpression>
 			</textField>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="555" height="100" backcolor="#FF9900" uuid="91d15631-22e7-4143-bfa0-2b78888b42c2"/>
+				<reportElement mode="Opaque" x="-1" y="-1" width="596" height="102" backcolor="#FF9900" uuid="91d15631-22e7-4143-bfa0-2b78888b42c2"/>
 				<frame>
-					<reportElement mode="Opaque" x="1" y="39" width="554" height="59" forecolor="#000066" backcolor="#660000" uuid="86d69d7c-648e-424c-85f9-f3fb7a03fdba"/>
+					<reportElement mode="Opaque" x="20" y="39" width="554" height="63" forecolor="#000066" backcolor="#660000" uuid="86d69d7c-648e-424c-85f9-f3fb7a03fdba"/>
 					<staticText>
 						<reportElement x="90" y="32" width="48" height="20" forecolor="#FFFFFF" uuid="8f0b4672-b907-490e-82ce-e1822ca9b38b"/>
 						<textElement verticalAlignment="Middle">

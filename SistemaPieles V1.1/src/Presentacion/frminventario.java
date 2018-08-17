@@ -24,11 +24,13 @@ public class frminventario extends javax.swing.JInternalFrame {
     public frminventario() {
         initComponents();
         mostrar("");
+        mostrarproductos();
         inhabilitar();
         this.setTitle("Inventario");
     }
     
     private String accion = "guardar";
+    public static String idproducto = "";
     public static int idusuario;
     
     void ocultar_columnas() {
@@ -63,9 +65,9 @@ public class frminventario extends javax.swing.JInternalFrame {
         btnguardar.setEnabled(false);
         btncancelar.setEnabled(false);
         
-        txtbuscar.setEnabled(false);
-        btnbuscar.setEnabled(false);
         btneliminar.setEnabled(false);
+        
+        txtidproduc.setVisible(false);
     }
     
     void habilitar(){
@@ -85,8 +87,6 @@ public class frminventario extends javax.swing.JInternalFrame {
         btnguardar.setEnabled(true);
         btncancelar.setEnabled(true);
         
-        txtbuscar.setEnabled(true);
-        btnbuscar.setEnabled(true);
         btneliminar.setEnabled(true);
         
         txtnombreproducto.setText("");
@@ -113,6 +113,24 @@ public class frminventario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,e);
         }
     }
+    
+    public void mostrarproductos(){
+        try{
+            finventario func = new finventario();
+            func.cargarproductos();
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(rootPane,e);
+        }
+    }
+    
+    public void mostraridproductos(String buscar){
+        try{
+            finventario func = new finventario();
+            func.cargaridproducto(buscar);
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(rootPane,e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,9 +143,6 @@ public class frminventario extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablalistado = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        txtbuscar = new javax.swing.JTextField();
-        btnbuscar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         lblsalidas = new javax.swing.JLabel();
@@ -135,6 +150,9 @@ public class frminventario extends javax.swing.JInternalFrame {
         lblingresos = new javax.swing.JLabel();
         lbltotal = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        cboproducto = new javax.swing.JComboBox<>();
+        txtidproduc = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtidinventario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -185,20 +203,6 @@ public class frminventario extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tablalistado);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(236, 240, 241));
-        jLabel6.setText("Buscar:");
-
-        btnbuscar.setBackground(new java.awt.Color(52, 73, 94));
-        btnbuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/search1.png"))); // NOI18N
-        btnbuscar.setText("Buscar");
-        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarActionPerformed(evt);
-            }
-        });
-
         btneliminar.setBackground(new java.awt.Color(52, 73, 94));
         btneliminar.setForeground(new java.awt.Color(255, 255, 255));
         btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/delete1.png"))); // NOI18N
@@ -245,6 +249,17 @@ public class frminventario extends javax.swing.JInternalFrame {
             }
         });
 
+        cboproducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboproducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cboproductoMouseReleased(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(236, 240, 241));
+        jLabel4.setText("Buscar:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -254,17 +269,18 @@ public class frminventario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addGap(146, 146, 146)
+                        .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnbuscar)
-                        .addGap(44, 44, 44)
-                        .addComponent(btneliminar)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnsalir)
+                        .addComponent(txtidproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(btneliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnsalir))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblregistros)
                         .addGap(18, 18, 18)
@@ -272,24 +288,24 @@ public class frminventario extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(lblsalidas)
                         .addGap(18, 18, 18)
-                        .addComponent(lbltotal)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbltotal)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btneliminar)
-                        .addComponent(btnbuscar)
-                        .addComponent(btnsalir))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                        .addComponent(btnsalir)
+                        .addComponent(jButton1)))
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblsalidas)
@@ -520,11 +536,6 @@ public class frminventario extends javax.swing.JInternalFrame {
         cboestado.setSelectedItem(tablalistado.getValueAt(fila, 8).toString());
     }//GEN-LAST:event_tablalistadoMouseClicked
 
-    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-        // TODO add your handling code here:
-        mostrar(txtbuscar.getText());
-    }//GEN-LAST:event_btnbuscarActionPerformed
-
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         // TODO add your handling code here:
         if(!txtidinventario.getText().equals("")){
@@ -652,6 +663,17 @@ public class frminventario extends javax.swing.JInternalFrame {
         mostrar("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cboproductoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboproductoMouseReleased
+        // TODO add your handling code here:
+        int seleccionado = cboproducto.getSelectedIndex();
+        mostraridproductos(cboproducto.getItemAt(seleccionado));
+        idproducto = txtidproduc.getText();
+        //int seleccionado = cbocliente.getSelectedIndex();
+        //mostrar(cbocliente.getItemAt(seleccionado));
+        mostrar(idproducto);
+        habilitar();
+    }//GEN-LAST:event_cboproductoMouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -688,7 +710,6 @@ public class frminventario extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnbuscar;
     private javax.swing.JButton btnbuscarproducto;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btneliminar;
@@ -696,6 +717,7 @@ public class frminventario extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
     private javax.swing.JComboBox<String> cboestado;
+    public static javax.swing.JComboBox<String> cboproducto;
     private com.toedter.calendar.JDateChooser dcfecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -705,7 +727,7 @@ public class frminventario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -715,10 +737,10 @@ public class frminventario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblsalidas;
     private javax.swing.JLabel lbltotal;
     private javax.swing.JTable tablalistado;
-    private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextField txtcantidad;
     public static javax.swing.JTextField txtidempleado;
     private javax.swing.JTextField txtidinventario;
+    public static javax.swing.JTextField txtidproduc;
     public static javax.swing.JTextField txtidproducto;
     public static javax.swing.JTextField txtnombreempleado;
     public static javax.swing.JTextField txtnombreproducto;

@@ -171,7 +171,7 @@ WHERE
 	<detail>
 		<band height="23" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="191" y="0" width="117" height="23" forecolor="#99FF99" backcolor="#99FF99" uuid="6d6eddb3-3ed5-443e-865c-d199613a8d53"/>
+				<reportElement mode="Opaque" x="191" y="0" width="117" height="23" forecolor="#99FF99" backcolor="#CCFFCC" uuid="6d6eddb3-3ed5-443e-865c-d199613a8d53"/>
 				<textField isBlankWhenNull="true">
 					<reportElement isPrintRepeatedValues="false" x="7" y="3" width="100" height="18" uuid="bb39e922-3fda-4ed2-a0ac-ec0ae03785c5"/>
 					<textElement verticalAlignment="Middle">
@@ -191,7 +191,7 @@ WHERE
 				</textField>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="83" y="0" width="108" height="23" backcolor="#99FFCC" uuid="93c8d251-596b-49b2-b33b-08b4c160ed38"/>
+				<reportElement mode="Opaque" x="83" y="0" width="108" height="23" backcolor="#CCFFCC" uuid="93c8d251-596b-49b2-b33b-08b4c160ed38"/>
 				<textField pattern="" isBlankWhenNull="false">
 					<reportElement x="4" y="3" width="100" height="18" uuid="75a18598-bf55-4a8a-ba6f-5fce7900bb74"/>
 					<textElement verticalAlignment="Middle">
@@ -211,7 +211,7 @@ WHERE
 				</textField>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="422" y="0" width="152" height="23" backcolor="#FFCC99" uuid="44f532f6-6e70-433c-8c97-16b7665d1212"/>
+				<reportElement mode="Opaque" x="422" y="0" width="152" height="23" backcolor="#FF9999" uuid="44f532f6-6e70-433c-8c97-16b7665d1212"/>
 				<textField isBlankWhenNull="true">
 					<reportElement isPrintRepeatedValues="false" x="7" y="3" width="131" height="18" uuid="f52bebe5-4096-4fe3-b586-77c3988ec303"/>
 					<textElement verticalAlignment="Middle">

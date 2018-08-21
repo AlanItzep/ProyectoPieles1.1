@@ -10,9 +10,6 @@ import Logica.conexion;
 import Logica.fabono;
 import Logica.fcliente;
 import Logica.fventa;
-import static Presentacion.Pruebas.cbocliente;
-import static Presentacion.frmreportes.idcliente;
-import static Presentacion.frmreportes.txtidcliente;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.Date;
@@ -39,7 +36,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     public frmsaldoabono() {
         initComponents();
         mostrar("");
-        mostrarclientes();
         this.setTitle("Abonos");
         inhabilitar();
     }
@@ -47,187 +43,187 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private String accion = "guardar";
     public static String idcliente = "";
     private Connection connection = new conexion().conectar();
-    
+
     void ocultar_columnas() {
         tablalistadoventa.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistadoventa.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistadoventa.getColumnModel().getColumn(0).setPreferredWidth(0);
-        
+
         tablalistadoventa.getColumnModel().getColumn(1).setMaxWidth(0);
         tablalistadoventa.getColumnModel().getColumn(1).setMinWidth(0);
         tablalistadoventa.getColumnModel().getColumn(1).setPreferredWidth(0);
-        
+
         tablalistadoventa.getColumnModel().getColumn(3).setMaxWidth(0);
         tablalistadoventa.getColumnModel().getColumn(3).setMinWidth(0);
         tablalistadoventa.getColumnModel().getColumn(3).setPreferredWidth(0);
-        
+
         tablalistadoventa.getColumnModel().getColumn(4).setMaxWidth(0);
         tablalistadoventa.getColumnModel().getColumn(4).setMinWidth(0);
         tablalistadoventa.getColumnModel().getColumn(4).setPreferredWidth(0);
-        
+
         tablalistadoventa.getColumnModel().getColumn(5).setMaxWidth(0);
         tablalistadoventa.getColumnModel().getColumn(5).setMinWidth(0);
         tablalistadoventa.getColumnModel().getColumn(5).setPreferredWidth(0);
-        
+
         tablalistadoventa.getColumnModel().getColumn(8).setMaxWidth(0);
         tablalistadoventa.getColumnModel().getColumn(8).setMinWidth(0);
         tablalistadoventa.getColumnModel().getColumn(8).setPreferredWidth(0);
-        
-        
+
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
-        
+
         tablalistado.getColumnModel().getColumn(1).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(1).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(1).setPreferredWidth(0);
-        
+
     }
-    
-    void inhabilitar(){
+
+    void inhabilitar() {
         txtidcliente.setVisible(false);
-        
+
         txtidabono.setVisible(false);
         txtdescripcion.setEnabled(false);
         txttotalmedida.setEnabled(false);
-        txttotalventa.setEnabled(false); 
+        txttotalventa.setEnabled(false);
         txtabono.setEnabled(false);
-        dcfechaabono.setEnabled(false); 
+        dcfechaabono.setEnabled(false);
         txtsaldo.setEnabled(false);
-        
+
         btnnuevo.setEnabled(false);
         btnguardar.setEnabled(false);
         btncancelar.setEnabled(false);
-        
+
         btneliminar.setEnabled(false);
-        
+
         //txtidcliente.setText("");
         //txtnombrecliente.setText("");
-        
         txtidabono.setText("");
         txtdescripcion.setText("");
         txttotalmedida.setText("");
         txttotalventa.setText("");
         txtabono.setText("");
         txtsaldo.setText("");
+        
+        jScrollPane3.setVisible(false);
     }
-    
-    void habilitar(){
+
+    void habilitar() {
         txtidabono.setVisible(false);
         txtdescripcion.setEnabled(false);
         txttotalmedida.setEnabled(false);
-        txttotalventa.setEnabled(false); 
+        txttotalventa.setEnabled(false);
         txtabono.setEnabled(false);
-        dcfechaabono.setEnabled(false); 
+        dcfechaabono.setEnabled(false);
         txtsaldo.setEnabled(false);
-        
+
         btnnuevo.setEnabled(true);
         btnguardar.setEnabled(false);
         btncancelar.setEnabled(false);
-        
+
         btneliminar.setEnabled(false);
-        
+
         txtidabono.setText("");
         txtdescripcion.setText("");
         txtabono.setText("");
     }
-    
-    void habilitarabono(){
+
+    void habilitarabono() {
         txtidabono.setVisible(false);
         txtdescripcion.setEnabled(true);
         txttotalmedida.setEnabled(false);
-        txttotalventa.setEnabled(false); 
+        txttotalventa.setEnabled(false);
         txtabono.setEnabled(true);
-        dcfechaabono.setEnabled(true); 
+        dcfechaabono.setEnabled(true);
         txtsaldo.setEnabled(false);
-        
+
         btnnuevo.setEnabled(true);
         btnguardar.setEnabled(true);
         btncancelar.setEnabled(true);
-        
+
         btneliminar.setEnabled(false);
-        
+
         txtidabono.setText("");
         txtdescripcion.setText("");
         txtabono.setText("");
     }
-    
-    void inhabilitarabono(){
+
+    void inhabilitarabono() {
         txtidabono.setVisible(false);
         txtdescripcion.setEnabled(false);
         txttotalmedida.setEnabled(false);
-        txttotalventa.setEnabled(false); 
+        txttotalventa.setEnabled(false);
         txtabono.setEnabled(false);
-        dcfechaabono.setEnabled(false); 
+        dcfechaabono.setEnabled(false);
         txtsaldo.setEnabled(false);
-        
+
         btnnuevo.setEnabled(true);
         btnguardar.setEnabled(false);
         btncancelar.setEnabled(false);
-        
+
         btneliminar.setEnabled(false);
-        
+
         txtidabono.setText("");
         txtdescripcion.setText("");
         txtabono.setText("");
     }
-    void mostrar(String buscar){
-        try{
-            
+
+    void mostrar(String buscar) {
+        try {
+
             DefaultTableModel modelo;
             fventa func = new fventa();
             modelo = func.mostrarinabono(buscar);
-            
+
             tablalistadoventa.setModel(modelo);
-            
-            lbltotalregistrosinventa.setText("Total registros: "+Integer.toString(func.totalregistros));
-            lbltotalventainventa.setText("Total venta : "+ String.format("%.2f", (func.totalventa)));
+
+            lbltotalregistrosinventa.setText("Total registros: " + Integer.toString(func.totalregistros));
+            lbltotalventainventa.setText("Total venta : Q." + String.format("%.2f", (func.totalventa)));
             lbltotalmedidainventa.setText("Total Medida : " + String.format("%.2f", (func.totalmedida)));
-            
-            txttotalmedida.setText(String.format("%.2f",(func.totalmedida)));
-            txttotalventa.setText(String.format("%.2f",(func.totalventa)));
-            
+
+            txttotalmedida.setText(String.format("%.2f", (func.totalmedida)));
+            txttotalventa.setText(String.format("%.2f", (func.totalventa)));
+
             fabono func2 = new fabono();
             modelo = func2.mostrar(buscar);
             tablalistado.setModel(modelo);
-            
-            lbltotalregistros.setText("No. Abonos realizados : "+Integer.toString(func2.totalregistros));
-            lbltotalabonos.setText("Total abonos : "+ String.format("%.2f", (func2.totalabonos)));
-            
+
+            lbltotalregistros.setText("No. Abonos realizados : " + Integer.toString(func2.totalregistros));
+            lbltotalabonos.setText("Total abonos : " + String.format("%.2f", (func2.totalabonos)));
+
             Double resultado;
-            resultado = func.totalventa-func2.totalabonos;
+            resultado = func.totalventa - func2.totalabonos;
             txtsaldo.setText(String.format("%.2f", resultado));
-            
+
             ocultar_columnas();
             /**
-            fcliente func3 = new fcliente();
-            func3.cargarclientes();
-            func3.cargaridclientes(buscar);**/
-        }catch(Exception e){
-            JOptionPane.showConfirmDialog(rootPane,e);
+             * fcliente func3 = new fcliente(); func3.cargarclientes();
+            func3.cargaridclientes(buscar);*
+             */
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(rootPane, e);
         }
     }
-    
-    public void mostrarclientes(){
-        try{
-            fcliente func = new fcliente();
-            func.cargarclientes();
-        }catch(Exception e){
-            JOptionPane.showConfirmDialog(rootPane,e);
-        }
-    }
-    
-    public void mostrarid(String buscar){
-        try{
-            fcliente func = new fcliente();
-            func.cargaridclientes(buscar);
-        }catch(Exception e){
-            JOptionPane.showConfirmDialog(rootPane,e);
-        }
-    }
-    
-    
-    
+//    
+//    public void mostrarclientes(){
+//        try{
+//            fcliente func = new fcliente();
+//            func.cargarclientes();
+//        }catch(Exception e){
+//            JOptionPane.showConfirmDialog(rootPane,e);
+//        }
+//    }
+//    
+//    public void mostrarid(String buscar){
+//        try{
+//            fcliente func = new fcliente();
+//            func.cargaridclientes(buscar);
+//        }catch(Exception e){
+//            JOptionPane.showConfirmDialog(rootPane,e);
+//        }
+//    }
+//    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -270,10 +266,13 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         lbltotalregistrosinventa = new javax.swing.JLabel();
         lbltotalmedidainventa = new javax.swing.JLabel();
         lbltotalventainventa = new javax.swing.JLabel();
-        cbocliente = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        txtnombrecliente = new javax.swing.JTextField();
+        btnbuscarcliente = new javax.swing.JButton();
+        btnfiltrar = new javax.swing.JButton();
+        lblpies = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(127, 140, 141));
         setClosable(true);
@@ -550,13 +549,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         lbltotalventainventa.setForeground(new java.awt.Color(236, 240, 241));
         lbltotalventainventa.setText("jLabel10");
 
-        cbocliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbocliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cboclienteMouseReleased(evt);
-            }
-        });
-
         jPanel4.setBackground(new java.awt.Color(141, 73, 94));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reportes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -597,6 +589,29 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
+        btnbuscarcliente.setBackground(new java.awt.Color(52, 73, 94));
+        btnbuscarcliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnbuscarcliente.setText("...");
+        btnbuscarcliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarclienteActionPerformed(evt);
+            }
+        });
+
+        btnfiltrar.setBackground(new java.awt.Color(52, 73, 94));
+        btnfiltrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnfiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/loupe_78347.png"))); // NOI18N
+        btnfiltrar.setText("Filtrar");
+        btnfiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfiltrarActionPerformed(evt);
+            }
+        });
+
+        lblpies.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblpies.setForeground(new java.awt.Color(236, 240, 241));
+        lblpies.setText("(pies)");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -608,27 +623,36 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                 .addComponent(lbltotalregistrosinventa)
                 .addGap(18, 18, 18)
                 .addComponent(lbltotalmedidainventa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblpies)
                 .addGap(18, 18, 18)
                 .addComponent(lbltotalventainventa))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cbocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnfiltrar)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscarcliente)
+                    .addComponent(btnfiltrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltotalregistrosinventa)
                     .addComponent(lbltotalmedidainventa)
-                    .addComponent(lbltotalventainventa))
+                    .addComponent(lbltotalventainventa)
+                    .addComponent(lblpies))
                 .addGap(4, 4, 4)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -685,7 +709,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         habilitar();
         btnguardar.setText("Guardar");
         accion = "guardar";
-        
+
         habilitarabono();
     }//GEN-LAST:event_btnnuevoActionPerformed
 
@@ -697,15 +721,14 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             txtnombrecliente.requestFocus();
             return;
         }*/
-        
 
-        if(txtdescripcion.getText().length() == 0){
+        if (txtdescripcion.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar una descripcion para el abono");
             txtdescripcion.requestFocus();
             return;
         }
 
-        if(txtabono.getText().length() == 0){
+        if (txtabono.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un abono");
             txtabono.requestFocus();
             return;
@@ -715,30 +738,29 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
         dts.setIdcliente(Integer.parseInt(txtidcliente.getText()));
         dts.setDescripcion(txtdescripcion.getText());
-        
+
         Calendar cal;
-        int d,m,a;
+        int d, m, a;
         cal = dcfechaabono.getCalendar();
         d = cal.get(Calendar.DAY_OF_MONTH);
         m = cal.get(Calendar.MONTH);
-        a = cal.get(Calendar.YEAR)-1900;
-        dts.setFechaabono(new Date(a,m,d));
-        
+        a = cal.get(Calendar.YEAR) - 1900;
+        dts.setFechaabono(new Date(a, m, d));
+
         dts.setAbono(Double.parseDouble(txtabono.getText()));
-        
-        if(accion.equals ("guardar")){
-            
-            if(func.insertar(dts)){
-                    JOptionPane.showMessageDialog(rootPane, "El ingreso del producto fue realizado satisfactoriamente");
-                    mostrar(idcliente);
-                    inhabilitarabono();
-                }                
+
+        if (accion.equals("guardar")) {
+
+            if (func.insertar(dts)) {
+                JOptionPane.showMessageDialog(rootPane, "El ingreso del producto fue realizado satisfactoriamente");
+                mostrar(idcliente);
+                inhabilitarabono();
             }
-        else if(accion.equals("editar")){
+        } else if (accion.equals("editar")) {
             dts.setIdabono(Integer.parseInt(txtidabono.getText()));
 
-            if(func.editar(dts)){
-                JOptionPane.showMessageDialog(rootPane,"La edicion del producto fue realizado satisfactoriamente");
+            if (func.editar(dts)) {
+                JOptionPane.showMessageDialog(rootPane, "La edicion del producto fue realizado satisfactoriamente");
                 mostrar(idcliente);
                 inhabilitarabono();
             }
@@ -756,15 +778,15 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         int fila = tablalistado.rowAtPoint(evt.getPoint());
         txtidabono.setText(tablalistado.getValueAt(fila, 0).toString());
         txtdescripcion.setText(tablalistado.getValueAt(fila, 2).toString());
-        dcfechaabono.setDate(Date.valueOf(tablalistado.getValueAt(fila,3).toString()));
+        dcfechaabono.setDate(Date.valueOf(tablalistado.getValueAt(fila, 3).toString()));
         txtabono.setText(tablalistado.getValueAt(fila, 4).toString());
     }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         // TODO add your handling code here:
-        if(!txtidabono.getText().equals("")){
-            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de elimiar este abono?","Confirmar",2);
-            if(confirmacion == 0){
+        if (!txtidabono.getText().equals("")) {
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de elimiar este abono?", "Confirmar", 2);
+            if (confirmacion == 0) {
                 fabono func = new fabono();
                 vabono dts = new vabono();
 
@@ -789,17 +811,17 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         }
         Map p = new HashMap();
         p.put("idcliente", txtidcliente.getText());
-            JasperReport report;
-            JasperPrint print;
+        JasperReport report;
+        JasperPrint print;
 
-            try {
-                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                        + "/src/Reportes/VentasAbonos.jrxml");
-                print = JasperFillManager.fillReport(report, p, connection);
+        try {
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/Reportes/VentasAbonos.jrxml");
+            print = JasperFillManager.fillReport(report, p, connection);
 
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Reporte de ventas y abonos");
-                view.setVisible(true);
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("Reporte de ventas y abonos");
+            view.setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -814,33 +836,36 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         }
         Map p = new HashMap();
         p.put("idcliente", txtidcliente.getText());
-            JasperReport report;
-            JasperPrint print;
+        JasperReport report;
+        JasperPrint print;
 
-            try {
-                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                        + "/src/Reportes/ventasdetalladas.jrxml");
-                print = JasperFillManager.fillReport(report, p, connection);
+        try {
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/Reportes/ventasdetalladas.jrxml");
+            print = JasperFillManager.fillReport(report, p, connection);
 
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Reporte de ventas detalladas");
-                view.setVisible(true);
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("Reporte de ventas detalladas");
+            view.setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void cboclienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboclienteMouseReleased
+    private void btnbuscarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarclienteActionPerformed
         // TODO add your handling code here:
-        int seleccionado = cbocliente.getSelectedIndex();
-        mostrarid(cbocliente.getItemAt(seleccionado));
-        idcliente = txtidcliente.getText();
-        //int seleccionado = cbocliente.getSelectedIndex();
-        //mostrar(cbocliente.getItemAt(seleccionado));
-        mostrar(idcliente);
-        habilitar();
-    }//GEN-LAST:event_cboclienteMouseReleased
+        frmvistacliente.clavecliente = "abono";
+        frmvistacliente form = new frmvistacliente();
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnbuscarclienteActionPerformed
+
+    private void btnfiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfiltrarActionPerformed
+        // TODO add your handling code here:
+        jScrollPane3.setVisible(true);
+        mostrar(txtidcliente.getText());
+    }//GEN-LAST:event_btnfiltrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -879,12 +904,13 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnbuscarcliente;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btneliminar;
+    private javax.swing.JButton btnfiltrar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
-    public static javax.swing.JComboBox<String> cbocliente;
     private com.toedter.calendar.JDateChooser dcfechaabono;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -902,6 +928,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblpies;
     private javax.swing.JLabel lbltotalabonos;
     private javax.swing.JLabel lbltotalmedidainventa;
     private javax.swing.JLabel lbltotalregistros;
@@ -913,6 +940,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txtdescripcion;
     private javax.swing.JTextField txtidabono;
     public static javax.swing.JTextField txtidcliente;
+    public static javax.swing.JTextField txtnombrecliente;
     private javax.swing.JTextField txtsaldo;
     public static javax.swing.JTextField txttotalmedida;
     public static javax.swing.JTextField txttotalventa;

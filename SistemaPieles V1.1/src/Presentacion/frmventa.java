@@ -11,6 +11,7 @@ import Logica.Iconos;
 import Logica.conexion;
 import Logica.fdetalleventa;
 import Logica.fventa;
+import static Presentacion.frmvistaproducto.claveproducto;
 import java.sql.Date;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -912,7 +913,7 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     private void btnbuscarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarproductoActionPerformed
         // TODO add your handling code here:
-        frmvistaproducto.clave = "venta";
+        frmvistaproducto.claveproducto = "venta";
         frmvistaproducto form = new frmvistaproducto();
         form.toFront();
         form.setVisible(true);
@@ -928,6 +929,7 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     private void btnbuscarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarclienteActionPerformed
         // TODO add your handling code here:
+        frmvistacliente.clavecliente = "venta";
         frmvistacliente form = new frmvistacliente();
         form.toFront();
         form.setVisible(true);
@@ -983,7 +985,7 @@ public class frmventa extends javax.swing.JInternalFrame {
         habilitarproducto();
 
         //abrir la ventana para escoger productos
-        frmvistaproducto.clave = "venta";
+        frmvistaproducto.claveproducto = "venta";
         frmvistaproducto form = new frmvistaproducto();
         form.toFront();
         form.setVisible(true);
@@ -1026,7 +1028,7 @@ public class frmventa extends javax.swing.JInternalFrame {
             actionClick();
         }
         if (evt.getKeyCode() == KeyEvent.VK_DIVIDE) {
-            frmvistaproducto.clave = "venta";
+            frmvistaproducto.claveproducto = "venta";
             frmvistaproducto form = new frmvistaproducto();
             form.toFront();
             form.setVisible(true);

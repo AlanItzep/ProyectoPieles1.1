@@ -24,10 +24,24 @@ public class frmvistacliente extends javax.swing.JFrame {
         mostrar("");
     }
     
+    public static String clavecliente;
+    
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(1).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(2).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(2).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(2).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(5).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(5).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(5).setPreferredWidth(0);
     }
 
     void mostrar(String buscar){
@@ -193,8 +207,22 @@ public class frmvistacliente extends javax.swing.JFrame {
             cod = tablalistado.getValueAt(fila, 0).toString();
             valor1 = tablalistado.getValueAt(fila,1).toString()+" "+tablalistado.getValueAt(fila,2).toString();
             
-            frmventa.txtidcliente.setText(cod);
-            frmventa.txtnombrecliente.setText(valor1);
+            if(clavecliente == "venta"){
+                frmventa.txtidcliente.setText(cod);
+                frmventa.txtnombrecliente.setText(valor1);
+                clavecliente = "";
+            }
+            if(clavecliente == "abono"){
+                frmsaldoabono.txtidcliente.setText(cod);
+                frmsaldoabono.txtnombrecliente.setText(valor1);
+                clavecliente = "";
+            }
+            if(clavecliente == "reporte"){
+                frmreportes.txtidcliente.setText(cod);
+                frmreportes.txtnombrecliente.setText(valor1);
+                clavecliente = "";
+            }
+            
             this.dispose();
         }
 

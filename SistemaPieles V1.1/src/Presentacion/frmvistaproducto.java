@@ -27,7 +27,7 @@ public class frmvistaproducto extends javax.swing.JFrame {
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Files/devices1_78351.png")));
     }
 
-    public static String clave;
+    public static String claveproducto;
     
     void ocultar_columnas(){
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -195,17 +195,22 @@ public class frmvistaproducto extends javax.swing.JFrame {
             valor2 = tablalistado.getValueAt(fila, 3).toString();
             valor3 = tablalistado.getValueAt(fila, 2).toString();
             
-            if(clave == "venta"){
+            if(claveproducto == "venta"){
                 frmventa.txtidproducto.setText(cod);
                 frmventa.txtnombreproducto.setText(valor1);
                 frmventa.txtprecioventa.setText(valor2);
-                clave = "";
+                claveproducto = "";
             }
-            if(clave =="inventario"){
+            if(claveproducto =="inventario"){
                 frminventario.txtidproducto.setText(cod);
                 frminventario.txtnombreproducto.setText(valor1);
                 frminventario.txtpresentacion.setText(valor3);
-                clave = "";
+                claveproducto    = "";
+            }
+            if(claveproducto =="inventarioconsulta"){
+                frminventario.txtidproduc.setText(cod);
+                frminventario.txtnombreproducto1.setText(valor1);
+                claveproducto    = "";
             }
             
             this.dispose();

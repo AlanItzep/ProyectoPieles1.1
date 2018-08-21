@@ -86,8 +86,8 @@ public class fventa {
             "ID empleado",//3
             "Empleado",//4
             "Fecha Venta",//x5
-            "Total Medida",//6
-            "Total Venta",//7
+            "Total Medida (pie)",//6
+            "Total Venta (Q)",//7
             "Tipo Pago",//8
         };
         

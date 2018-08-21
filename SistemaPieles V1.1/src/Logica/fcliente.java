@@ -6,8 +6,8 @@
 package Logica;
 
 import Datos.vcliente;
-import static Presentacion.frmsaldoabono.cbocliente;
-import static Presentacion.frmsaldoabono.txtidcliente;
+//import static Presentacion.frmsaldoabono.cbocliente;
+//import static Presentacion.frmsaldoabono.txtidcliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +34,7 @@ public class fcliente {
             "ID",
             "Nombre",
             "Apellido",
-            "Completo",
+            "Cliente",
             "Telefono",
             "Email",
             "Direccion",
@@ -74,41 +74,41 @@ public class fcliente {
             }
     }
     
-    public void cargarclientes(){
-        String registro;
-        sSQL = "select p.completo from persona p "
-                + "inner join cliente c on p.idpersona = c.idpersona ";
-        try{
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-            
-            cbocliente.removeAllItems();
-            
-            while(rs.next()){
-                registro = rs.getString(1);
-                cbocliente.addItem(registro);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-    
-    public void cargaridclientes(String buscar){
-        String id;
-        sSQL = "select p.idpersona from persona p inner join cliente c on p.idpersona = c.idpersona where completo like '%" + buscar + "%'";
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-
-            while (rs.next()) {
-                id = rs.getString(1);
-                txtidcliente.setText(id);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-    
+//    public void cargarclientes(){
+//        String registro;
+//        sSQL = "select p.completo from persona p "
+//                + "inner join cliente c on p.idpersona = c.idpersona ";
+//        try{
+//            Statement st = cn.createStatement();
+//            ResultSet rs = st.executeQuery(sSQL);
+//            
+//            cbocliente.removeAllItems();
+//            
+//            while(rs.next()){
+//                registro = rs.getString(1);
+//                cbocliente.addItem(registro);
+//            }
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//    }
+//    
+//    public void cargaridclientes(String buscar){
+//        String id;
+//        sSQL = "select p.idpersona from persona p inner join cliente c on p.idpersona = c.idpersona where completo like '%" + buscar + "%'";
+//        try {
+//            Statement st = cn.createStatement();
+//            ResultSet rs = st.executeQuery(sSQL);
+//
+//            while (rs.next()) {
+//                id = rs.getString(1);
+//                txtidcliente.setText(id);
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//    }
+//    
     public boolean insertar(vcliente dts){
         sSQL = "insert into persona (nombre, apellido,completo,telefono,email,direccion)"
                 + " values(?,?,?,?,?,?)";

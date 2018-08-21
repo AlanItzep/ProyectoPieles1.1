@@ -6,8 +6,6 @@
 package Logica;
 
 import Datos.vinventario;
-import static Presentacion.frminventario.cboproducto;
-import static Presentacion.frminventario.txtidproduc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -158,42 +156,42 @@ public class finventario {
         }
     }
     
-    public void cargarproductos(){
-        String registro;
-        sSQL = "select DISTINCT  p.nombre from producto p "
-                + "inner join inventario i on p.idproducto = i.idproducto ";
-                
-        //sSQL = "select p.completo from persona p "
-                //+ "inner join cliente c on p.idpersona = c.idpersona ";
-        try{
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-            
-            cboproducto.removeAllItems();
-            
-            while(rs.next()){
-                registro = rs.getString(1);
-                cboproducto.addItem(registro);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-    
-    public void cargaridproducto(String buscar){
-        String id;
-        sSQL = "select p.idproducto from producto p inner join inventario i on p.idproducto = i.idproducto where nombre like '%" + buscar + "%'";
-        //sSQL = "select p.idpersona from persona p inner join cliente c on p.idpersona = c.idpersona where completo like '%" + buscar + "%'";
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-
-            while (rs.next()) {
-                id = rs.getString(1);
-                txtidproduc.setText(id);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
+//    public void cargarproductos(){
+//        String registro;
+//        sSQL = "select DISTINCT  p.nombre from producto p "
+//                + "inner join inventario i on p.idproducto = i.idproducto ";
+//                
+//        //sSQL = "select p.completo from persona p "
+//                //+ "inner join cliente c on p.idpersona = c.idpersona ";
+//        try{
+//            Statement st = cn.createStatement();
+//            ResultSet rs = st.executeQuery(sSQL);
+//            
+//            cboproducto.removeAllItems();
+//            
+//            while(rs.next()){
+//                registro = rs.getString(1);
+//                cboproducto.addItem(registro);
+//            }
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//    }
+//    
+//    public void cargaridproducto(String buscar){
+//        String id;
+//        sSQL = "select p.idproducto from producto p inner join inventario i on p.idproducto = i.idproducto where nombre like '%" + buscar + "%'";
+//        //sSQL = "select p.idpersona from persona p inner join cliente c on p.idpersona = c.idpersona where completo like '%" + buscar + "%'";
+//        try {
+//            Statement st = cn.createStatement();
+//            ResultSet rs = st.executeQuery(sSQL);
+//
+//            while (rs.next()) {
+//                id = rs.getString(1);
+//                txtidproduc.setText(id);
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//    }
 }

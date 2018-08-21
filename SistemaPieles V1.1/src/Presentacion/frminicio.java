@@ -302,13 +302,11 @@ public class frminicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmreportes form = new frmreportes();
         escritorio.add(form);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = form.getSize();
+        form.setLocation((desktopSize.width - FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
         form.toFront();
         form.setVisible(true);
-        try {   
-            form.setSelected(true);   
-            form.setMaximizable(true);   
-            form.setMaximum(true);   
-        }catch(Exception e){}
     }//GEN-LAST:event_jMenuItem7ActionPerformed
  
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed

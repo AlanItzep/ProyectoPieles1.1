@@ -24,7 +24,6 @@ public class frminventario extends javax.swing.JInternalFrame {
     public frminventario() {
         initComponents();
         mostrar("");
-        mostrarproductos();
         inhabilitar();
         this.setTitle("Inventario");
     }
@@ -114,23 +113,23 @@ public class frminventario extends javax.swing.JInternalFrame {
         }
     }
     
-    public void mostrarproductos(){
-        try{
-            finventario func = new finventario();
-            func.cargarproductos();
-        }catch(Exception e){
-            JOptionPane.showConfirmDialog(rootPane,e);
-        }
-    }
-    
-    public void mostraridproductos(String buscar){
-        try{
-            finventario func = new finventario();
-            func.cargaridproducto(buscar);
-        }catch(Exception e){
-            JOptionPane.showConfirmDialog(rootPane,e);
-        }
-    }
+//    public void mostrarproductos(){
+//        try{
+//            finventario func = new finventario();
+//            func.cargarproductos();
+//        }catch(Exception e){
+//            JOptionPane.showConfirmDialog(rootPane,e);
+//        }
+//    }
+//    
+//    public void mostraridproductos(String buscar){
+//        try{
+//            finventario func = new finventario();
+//            func.cargaridproducto(buscar);
+//        }catch(Exception e){
+//            JOptionPane.showConfirmDialog(rootPane,e);
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,9 +149,14 @@ public class frminventario extends javax.swing.JInternalFrame {
         lblingresos = new javax.swing.JLabel();
         lbltotal = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        cboproducto = new javax.swing.JComboBox<>();
         txtidproduc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        btnbuscarproducto1 = new javax.swing.JButton();
+        txtnombreproducto1 = new javax.swing.JTextField();
+        btnfiltrar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtidinventario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -249,16 +253,40 @@ public class frminventario extends javax.swing.JInternalFrame {
             }
         });
 
-        cboproducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboproducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cboproductoMouseReleased(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(236, 240, 241));
         jLabel4.setText("Buscar:");
+
+        btnbuscarproducto1.setBackground(new java.awt.Color(52, 73, 94));
+        btnbuscarproducto1.setForeground(new java.awt.Color(255, 255, 255));
+        btnbuscarproducto1.setText("...");
+        btnbuscarproducto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarproducto1ActionPerformed(evt);
+            }
+        });
+
+        btnfiltrar.setBackground(new java.awt.Color(52, 73, 94));
+        btnfiltrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnfiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/loupe_78347.png"))); // NOI18N
+        btnfiltrar.setText("Filtrar");
+        btnfiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfiltrarActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(236, 240, 241));
+        jLabel5.setText("Unidades");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(236, 240, 241));
+        jLabel6.setText("Unidades");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(236, 240, 241));
+        jLabel7.setText("Unidades");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -269,13 +297,16 @@ public class frminventario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(cboproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtidproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtnombreproducto1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnbuscarproducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnfiltrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(btneliminar)
@@ -283,12 +314,18 @@ public class frminventario extends javax.swing.JInternalFrame {
                         .addComponent(btnsalir))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblregistros)
-                        .addGap(18, 18, 18)
+                        .addGap(45, 45, 45)
                         .addComponent(lblingresos)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(45, 45, 45)
                         .addComponent(lblsalidas)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addGap(45, 45, 45)
                         .addComponent(lbltotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -296,22 +333,29 @@ public class frminventario extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btneliminar)
                         .addComponent(btnsalir)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1)
+                        .addComponent(btnfiltrar))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtidproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtnombreproducto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnbuscarproducto1))))
                 .addGap(28, 28, 28)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblsalidas)
                     .addComponent(lblregistros)
                     .addComponent(lblingresos)
-                    .addComponent(lbltotal))
+                    .addComponent(lbltotal)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
                 .addGap(20, 20, 20))
         );
 
@@ -426,11 +470,11 @@ public class frminventario extends javax.swing.JInternalFrame {
                             .addComponent(cboestado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtidinventario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtidinventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtidempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtidproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtidempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtidproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtnombreproducto)
@@ -482,7 +526,7 @@ public class frminventario extends javax.swing.JInternalFrame {
                     .addComponent(btnnuevo)
                     .addComponent(btnguardar)
                     .addComponent(btncancelar))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -651,7 +695,7 @@ public class frminventario extends javax.swing.JInternalFrame {
 
     private void btnbuscarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarproductoActionPerformed
         // TODO add your handling code here:
-        frmvistaproducto.clave = "inventario";
+        frmvistaproducto.claveproducto = "inventario";
         frmvistaproducto form = new frmvistaproducto();
         form.toFront();
         form.setVisible(true);
@@ -663,16 +707,18 @@ public class frminventario extends javax.swing.JInternalFrame {
         mostrar("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void cboproductoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboproductoMouseReleased
+    private void btnbuscarproducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarproducto1ActionPerformed
         // TODO add your handling code here:
-        int seleccionado = cboproducto.getSelectedIndex();
-        mostraridproductos(cboproducto.getItemAt(seleccionado));
-        idproducto = txtidproduc.getText();
-        //int seleccionado = cbocliente.getSelectedIndex();
-        //mostrar(cbocliente.getItemAt(seleccionado));
-        mostrar(idproducto);
-        habilitar();
-    }//GEN-LAST:event_cboproductoMouseReleased
+        frmvistaproducto.claveproducto = "inventarioconsulta";
+        frmvistaproducto form = new frmvistaproducto();
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnbuscarproducto1ActionPerformed
+
+    private void btnfiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfiltrarActionPerformed
+        // TODO add your handling code here:
+        mostrar(txtidproduc.getText());
+    }//GEN-LAST:event_btnfiltrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -711,13 +757,14 @@ public class frminventario extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscarproducto;
+    private javax.swing.JButton btnbuscarproducto1;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btneliminar;
+    private javax.swing.JButton btnfiltrar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
     private javax.swing.JComboBox<String> cboestado;
-    public static javax.swing.JComboBox<String> cboproducto;
     private com.toedter.calendar.JDateChooser dcfecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -728,6 +775,9 @@ public class frminventario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -744,6 +794,7 @@ public class frminventario extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtidproducto;
     public static javax.swing.JTextField txtnombreempleado;
     public static javax.swing.JTextField txtnombreproducto;
+    public static javax.swing.JTextField txtnombreproducto1;
     public static javax.swing.JTextArea txtpresentacion;
     // End of variables declaration//GEN-END:variables
 }

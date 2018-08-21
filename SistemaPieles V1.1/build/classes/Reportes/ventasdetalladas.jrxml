@@ -30,10 +30,10 @@ WHERE
 	<field name="venta_totalmedida" class="java.math.BigDecimal"/>
 	<field name="venta_totalventa" class="java.math.BigDecimal"/>
 	<field name="venta_tipopago" class="java.lang.String"/>
-	<variable name="venta_totalmedida_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+	<variable name="venta_totalmedida_1" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{venta_totalmedida}]]></variableExpression>
 	</variable>
-	<variable name="venta_totalventa_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+	<variable name="venta_totalventa_1" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{venta_totalventa}]]></variableExpression>
 	</variable>
 	<background>
@@ -42,7 +42,7 @@ WHERE
 	<title>
 		<band height="79" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="-19" y="-19" width="594" height="98" backcolor="#FF9900" uuid="e2ccd9f3-58c5-4266-9127-03966634d0cd"/>
+				<reportElement mode="Opaque" x="-20" y="-19" width="595" height="98" backcolor="#FF9900" uuid="e2ccd9f3-58c5-4266-9127-03966634d0cd"/>
 				<frame>
 					<reportElement mode="Opaque" x="1" y="12" width="593" height="68" forecolor="#000000" backcolor="#990000" uuid="84a8b3a1-2863-4dfd-95ae-15f01b657b48"/>
 					<staticText>
@@ -73,7 +73,7 @@ WHERE
 	<pageHeader>
 		<band height="107" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="0" width="200" height="100" uuid="b62f1fdc-f45d-4808-b841-705a1d9372d7"/>
+				<reportElement x="-20" y="0" width="220" height="107" uuid="b62f1fdc-f45d-4808-b841-705a1d9372d7"/>
 				<subreportParameter name="idcliente">
 					<subreportParameterExpression><![CDATA[$P{idcliente}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -85,7 +85,7 @@ WHERE
 	<detail>
 		<band height="198" splitType="Stretch">
 			<rectangle radius="10">
-				<reportElement x="-19" y="11" width="593" height="20" forecolor="#000000" backcolor="#CC9900" uuid="03fcf9e6-0c0b-478e-9fd5-e1ad087f50c4"/>
+				<reportElement x="-18" y="11" width="592" height="20" forecolor="#000000" backcolor="#CC9900" uuid="03fcf9e6-0c0b-478e-9fd5-e1ad087f50c4"/>
 			</rectangle>
 			<textField>
 				<reportElement x="10" y="39" width="108" height="20" uuid="ace9fc30-4ef3-4d59-beac-84fa00fea593"/>
@@ -162,13 +162,33 @@ WHERE
 	<columnFooter>
 		<band height="30" splitType="Stretch">
 			<textField>
-				<reportElement x="324" y="0" width="100" height="20" uuid="66918d64-6638-4292-8e57-b439be68801d"/>
+				<reportElement x="271" y="0" width="100" height="20" uuid="66918d64-6638-4292-8e57-b439be68801d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{venta_totalmedida_1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="445" y="0" width="100" height="20" uuid="dce5c8f4-689f-4a57-a6be-6f463bed9476"/>
+				<reportElement x="451" y="0" width="100" height="20" uuid="dce5c8f4-689f-4a57-a6be-6f463bed9476"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{venta_totalventa_1}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="204" y="0" width="62" height="20" uuid="2af4c583-9e09-4f7c-89ba-4b40c09d69d2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Medida (Pie)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="0" width="55" height="20" uuid="09d6e02a-75f4-4b0f-86e2-6684edb019b1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Ventas (Q)]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 	<pageFooter>
@@ -189,7 +209,4 @@ WHERE
 			</textField>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

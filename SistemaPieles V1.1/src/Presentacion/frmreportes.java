@@ -32,42 +32,32 @@ public class frmreportes extends javax.swing.JInternalFrame {
     public frmreportes() {
         initComponents();
         inhabilitar();
-        mostrar();
+        mostrar("");
+        this.setTitle("Reportes de ventas por fecha");
     }
     
     public static int idcliente;
     
-    public void mostrar(){
+    public void mostrar(String buscar){
         try{
             fcliente func = new fcliente();
-            func.cargarclientes();
+            func.mostrar(buscar);
         }catch(Exception e){
             JOptionPane.showConfirmDialog(rootPane,e);
         }
     }
     
-    public void callid(String buscar){
-        try{
-            fcliente func = new fcliente();
-            func.cargaridclientes(buscar);
-        }catch(Exception e){
-            JOptionPane.showConfirmDialog(rootPane,e);
-        }
-    }
     
     void inhabilitar(){
-        reportefecha.setVisible(false);
-        reporteutilidades.setVisible(false);
-        reportecuenta.setVisible(false);
-        reportedetalle.setVisible(false);
-        jLabel2.setVisible(false);
-        cbochoseclientes.setVisible(false);
         txtidcliente.setVisible(false);
+        jLabel2.setVisible(false);
+        txtnombrecliente.setVisible(false);
+        btnbuscarcliente.setVisible(false);
+        btnfiltrar.setVisible(false);
     }
     
     void cliente(){
         jLabel2.setVisible(true);
-        cbochoseclientes.setVisible(true);    
     }
     
     void ocultarfechas(){
@@ -100,24 +90,17 @@ public class frmreportes extends javax.swing.JInternalFrame {
         btngenerarreporte = new javax.swing.JButton();
         dcfecha2 = new com.toedter.calendar.JDateChooser();
         cboeleccion = new javax.swing.JComboBox<>();
-        reporteutilidades = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        reportecuenta = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        reportedetalle = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        cbotiporeporte = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        cbochoseclientes = new javax.swing.JComboBox<>();
         txtidcliente = new javax.swing.JTextField();
+        txtnombrecliente = new javax.swing.JTextField();
+        btnbuscarcliente = new javax.swing.JButton();
+        btnfiltrar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(127, 140, 141));
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconifiable(true);
-        setMaximizable(true);
-        setPreferredSize(new java.awt.Dimension(960, 560));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/printer_78349.png"))); // NOI18N
+        setPreferredSize(new java.awt.Dimension(454, 260));
 
         reportefecha.setBackground(new java.awt.Color(44, 62, 80));
         reportefecha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Por fechas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
@@ -165,130 +148,32 @@ public class frmreportes extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        reporteutilidades.setBackground(new java.awt.Color(44, 62, 80));
-        reporteutilidades.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Utilidades", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
-
-        jButton1.setBackground(new java.awt.Color(52, 73, 94));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Consultar utilidades");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout reporteutilidadesLayout = new javax.swing.GroupLayout(reporteutilidades);
-        reporteutilidades.setLayout(reporteutilidadesLayout);
-        reporteutilidadesLayout.setHorizontalGroup(
-            reporteutilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reporteutilidadesLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1))
-        );
-        reporteutilidadesLayout.setVerticalGroup(
-            reporteutilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(reporteutilidadesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        reportecuenta.setBackground(new java.awt.Color(44, 62, 80));
-        reportecuenta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado de cuenta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
-
-        jButton2.setBackground(new java.awt.Color(52, 73, 94));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Consultar abonos y ventas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout reportecuentaLayout = new javax.swing.GroupLayout(reportecuenta);
-        reportecuenta.setLayout(reportecuentaLayout);
-        reportecuentaLayout.setHorizontalGroup(
-            reportecuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(reportecuentaLayout.createSequentialGroup()
-                .addContainerGap(610, Short.MAX_VALUE)
-                .addComponent(jButton2))
-        );
-        reportecuentaLayout.setVerticalGroup(
-            reportecuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(reportecuentaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        reportedetalle.setBackground(new java.awt.Color(44, 62, 80));
-        reportedetalle.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalle de ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
-
-        jButton3.setBackground(new java.awt.Color(52, 73, 94));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Consultar detalles");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout reportedetalleLayout = new javax.swing.GroupLayout(reportedetalle);
-        reportedetalle.setLayout(reportedetalleLayout);
-        reportedetalleLayout.setHorizontalGroup(
-            reportedetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportedetalleLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton3))
-        );
-        reportedetalleLayout.setVerticalGroup(
-            reportedetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportedetalleLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addContainerGap())
-        );
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(52, 73, 94));
-        jLabel1.setText("Reporte:");
-
-        cbotiporeporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reporte de utilidades", "Ventas por fechas", "Estado de cuenta de cliente", "Detalle de ventas de cliente" }));
-        cbotiporeporte.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbotiporeporteItemStateChanged(evt);
-            }
-        });
-        cbotiporeporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbotiporeporteActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(52, 73, 94));
         jLabel2.setText("Cliente:");
 
-        cbochoseclientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbochoseclientes.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbochoseclientesItemStateChanged(evt);
-            }
-        });
-        cbochoseclientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cbochoseclientesMouseReleased(evt);
-            }
-        });
-        cbochoseclientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbochoseclientesActionPerformed(evt);
-            }
-        });
-
         txtidcliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtidclienteActionPerformed(evt);
+            }
+        });
+
+        btnbuscarcliente.setBackground(new java.awt.Color(52, 73, 94));
+        btnbuscarcliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnbuscarcliente.setText("...");
+        btnbuscarcliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarclienteActionPerformed(evt);
+            }
+        });
+
+        btnfiltrar.setBackground(new java.awt.Color(52, 73, 94));
+        btnfiltrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnfiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/loupe_78347.png"))); // NOI18N
+        btnfiltrar.setText("Filtrar");
+        btnfiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfiltrarActionPerformed(evt);
             }
         });
 
@@ -299,20 +184,17 @@ public class frmreportes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(reportedetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(135, 135, 135)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbotiporeporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbochoseclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnfiltrar)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(reporteutilidades, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(reportecuenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(reportefecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -321,22 +203,15 @@ public class frmreportes extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(cbotiporeporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(cbochoseclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(reportefecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(reporteutilidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnbuscarcliente)
+                        .addComponent(btnfiltrar)
+                        .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reportecuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(reportedetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(reportefecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -365,7 +240,7 @@ public class frmreportes extends javax.swing.JInternalFrame {
                 print = JasperFillManager.fillReport(report, p, connection);
 
                 JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Reporte de utilidades");
+                view.setTitle("Reporte de ventas por fechas");
                 view.setVisible(true);
 
             } catch (Exception e) {
@@ -397,7 +272,7 @@ public class frmreportes extends javax.swing.JInternalFrame {
                 print = JasperFillManager.fillReport(report, p, connection);
 
                 JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Reporte de Clientes");
+                view.setTitle("Reporte de ventas por fechas");
                 view.setVisible(true);
 
             } catch (Exception e) {
@@ -423,121 +298,23 @@ public class frmreportes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cboeleccionItemStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Map p = new HashMap();
-        p.put("idventa", "3");
-            JasperReport report;
-            JasperPrint print;
-
-            try {
-                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                        + "/src/Reportes/Utilidad.jrxml");
-                print = JasperFillManager.fillReport(report, p, connection);
-
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Reporte de utilidad de venta");
-                view.setVisible(true);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        Map p = new HashMap();
-        idcliente = Integer.parseInt(txtidcliente.getText());
-        p.put("idcliente", idcliente);
-            JasperReport report;
-            JasperPrint print;
-
-            try {
-                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                        + "/src/Reportes/VentasAbonos.jrxml");
-                print = JasperFillManager.fillReport(report, p, connection);
-
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Reporte de ventas y abonos");
-                view.setVisible(true);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        Map p = new HashMap();
-        idcliente = Integer.parseInt(txtidcliente.getText());
-        p.put("idcliente", idcliente);
-            JasperReport report;
-            JasperPrint print;
-
-            try {
-                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                        + "/src/Reportes/ventasdetalladas.jrxml");
-                print = JasperFillManager.fillReport(report, p, connection);
-
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Reporte de ventas detalladas");
-                view.setVisible(true);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void cbotiporeporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotiporeporteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbotiporeporteActionPerformed
-
-    private void cbotiporeporteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbotiporeporteItemStateChanged
-        // TODO add your handling code here:
-        String estado;
-        int seleccionado = cbotiporeporte.getSelectedIndex();
-        estado = (String) cbotiporeporte.getItemAt(seleccionado);
-        if(estado.equals("Ventas por fechas")){
-            inhabilitar();
-            ocultarfechas();
-            reportefecha.setVisible(true);         
-            
-        }
-        if(estado.equals("Reporte de utilidades")){
-            inhabilitar();
-            reporteutilidades.setVisible(true); 
-        }
-        if(estado.equals("Estado de cuenta de cliente")){
-            inhabilitar();
-            cliente();
-            reportecuenta.setVisible(true);            
-        }
-        if(estado.equals("Detalle de ventas de cliente")){
-            inhabilitar();
-            cliente();
-            reportedetalle.setVisible(true); 
-        }
-    }//GEN-LAST:event_cbotiporeporteItemStateChanged
-
-    private void cbochoseclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbochoseclientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbochoseclientesActionPerformed
-
     private void txtidclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidclienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidclienteActionPerformed
 
-    private void cbochoseclientesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbochoseclientesItemStateChanged
-        // TODO add your handling code here:String estado;
-        int seleccionado = cbochoseclientes.getSelectedIndex();
-        String estado = (String) cbochoseclientes.getItemAt(seleccionado);
-        callid(estado);
-    }//GEN-LAST:event_cbochoseclientesItemStateChanged
+    private void btnbuscarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarclienteActionPerformed
+        // TODO add your handling code here:
+        frmvistacliente.clavecliente = "reporte";
+        frmvistacliente form = new frmvistacliente();
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnbuscarclienteActionPerformed
 
-    private void cbochoseclientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbochoseclientesMouseReleased
+    private void btnfiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfiltrarActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_cbochoseclientesMouseReleased
+        mostrar(txtidcliente.getText());
+    }//GEN-LAST:event_btnfiltrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -575,22 +352,16 @@ public class frmreportes extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnbuscarcliente;
+    private javax.swing.JButton btnfiltrar;
     private javax.swing.JButton btngenerarreporte;
-    public static javax.swing.JComboBox<String> cbochoseclientes;
     private javax.swing.JComboBox<String> cboeleccion;
-    private javax.swing.JComboBox<String> cbotiporeporte;
     private com.toedter.calendar.JDateChooser dcfecha1;
     private com.toedter.calendar.JDateChooser dcfecha2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel reportecuenta;
-    private javax.swing.JPanel reportedetalle;
     private javax.swing.JPanel reportefecha;
-    private javax.swing.JPanel reporteutilidades;
     public static javax.swing.JTextField txtidcliente;
+    public static javax.swing.JTextField txtnombrecliente;
     // End of variables declaration//GEN-END:variables
 
 }

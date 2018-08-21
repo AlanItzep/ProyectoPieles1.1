@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VentasFechas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="565" leftMargin="15" rightMargin="15" topMargin="20" bottomMargin="20" uuid="00db90c4-23da-4a2c-91b3-cd6d5174af38">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="106"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fechaconsulta1" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -41,7 +41,7 @@ WHERE
 	<field name="cliente_nit" class="java.lang.String"/>
 	<field name="persona_idpersona" class="java.lang.Integer"/>
 	<field name="persona_completo" class="java.lang.String"/>
-	<variable name="venta_totalventa_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+	<variable name="venta_totalventa_1" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{venta_totalventa}]]></variableExpression>
 	</variable>
 	<background>
@@ -253,11 +253,11 @@ WHERE
 					<textFieldExpression><![CDATA[$V{venta_totalventa_1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="384" y="4" width="100" height="20" forecolor="#FFFFFF" uuid="72ebec6a-2d3e-4e57-8d6b-3231fd22fe16"/>
+					<reportElement x="414" y="4" width="70" height="20" forecolor="#FFFFFF" uuid="72ebec6a-2d3e-4e57-8d6b-3231fd22fe16"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Total: ]]></text>
+					<text><![CDATA[Total:    Q]]></text>
 				</staticText>
 			</frame>
 		</band>

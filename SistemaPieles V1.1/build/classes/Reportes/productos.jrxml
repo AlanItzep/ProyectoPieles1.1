@@ -53,7 +53,7 @@ FROM
 			<frame>
 				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="c54b3a4f-040a-47f3-916f-8da98b6bcb7f"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="0790108a-90a1-4be1-b675-6bb2550c9a71"/>
+					<reportElement x="304" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="0790108a-90a1-4be1-b675-6bb2550c9a71"/>
 					<textElement textAlignment="Right">
 						<font size="12"/>
 					</textElement>
@@ -64,9 +64,13 @@ FROM
 					<textElement verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="14"/>
 					</textElement>
-					<text><![CDATA[Productos en Existencia]]></text>
+					<text><![CDATA[Productos en existencia]]></text>
 				</staticText>
 			</frame>
+			<image>
+				<reportElement x="453" y="2" width="100" height="128" uuid="e0c7db61-4504-47a9-8af5-d0e8b1388a0a"/>
+				<imageExpression><![CDATA["C:\\ProyectoPieles\\ProyectoPieles1.1\\SistemaPieles V1.1\\src\\Reportes\\tecnopiel.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -107,7 +111,7 @@ FROM
 				<textElement>
 					<font fontName="Times New Roman"/>
 				</textElement>
-				<text><![CDATA[DESCRIPCION]]></text>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -179,7 +183,7 @@ FROM
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Pagína "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 				</textField>
 				<textField pattern="EEEEE dd MMMMM yyyy">
 					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="799ce13c-33f7-4f9c-8006-1d17db2d5b2a"/>
